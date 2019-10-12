@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:neonton/TesDoang.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
@@ -43,7 +42,7 @@ class _LogState extends State<Log> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => TesDoang(),
+            builder: (context) => Log(),
           ),
         );
       }
@@ -300,5 +299,12 @@ class _LogState extends State<Log> {
         ),
       ),
     );
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    // IMPORTANT to dispose of all the used resources
+    passController.dispose();
+    emailController.dispose();
   }
 }

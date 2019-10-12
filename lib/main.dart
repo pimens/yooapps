@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/Log.dart';
 import 'package:neonton/component/Draw.dart';
-import 'package:neonton/Video.dart';
+import 'package:neonton/pageVideo/Video.dart';
 import 'package:neonton/component/SearchPage.dart';
 import 'package:neonton/tentang.dart';
 

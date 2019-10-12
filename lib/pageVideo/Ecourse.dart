@@ -10,19 +10,19 @@ import 'dart:core';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Video extends StatefulWidget {
+class Ecourse extends StatefulWidget {
   String id = "";
   String harga;
-  Video({this.id, this.harga});
+  Ecourse({this.id, this.harga});
   @override
-  _VideoState createState() => _VideoState(id: id, harga: harga);
+  _EcourseState createState() => _EcourseState(id: id, harga: harga);
 }
 
-class _VideoState extends State<Video> {
+class _EcourseState extends State<Ecourse> {
   String id, x;
   String harga = "";
   int saldo = 0;
-  _VideoState({this.id, this.harga});
+  _EcourseState({this.id, this.harga});
   static String user = "0";
   static bool rate = false;
   List data = [], byr = [];
@@ -32,7 +32,7 @@ class _VideoState extends State<Video> {
 
   //pembayaran
   Future<String> pembayaran() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/payVideo/" +
+    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/payEcourse/" +
         data_login[2] +
         "/" +
         id;
@@ -105,37 +105,7 @@ class _VideoState extends State<Video> {
     );
   }
 
-  void saldoKurang() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return new WillPopScope(
-            onWillPop: () async => false,
-            child: AlertDialog(
-              title: new Text("Pembayaran"),
-              content: saldo != 0
-                  ? new Text("Tidak Cukup saldo")
-                  : new Text(
-                      "Apakah anda mau membeli video ini dengan harga : " +
-                          harga +
-                          " ? "),
-              actions: <Widget>[
-                new FlatButton(
-                  child: new Text("Close" + id),
-                  onPressed: () {
-                    // Navigator.pop(context);
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ));
-      },
-    );
-  }
-
-  getValuesSF() async {
+    getValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     data_login = prefs.getStringList('login') ?? [];
     if (data_login.length == 0) {
@@ -161,7 +131,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getData() async {
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getVideoById/';
+    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getEcourseById/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -175,7 +145,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/getRating/" + id;
+    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/getRatingEcourse/" + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -189,7 +159,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> cekRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/cekRating/" +
+    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/cekRatingEcourse/" +
         data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -205,7 +175,7 @@ class _VideoState extends State<Video> {
 
   Future<String> cekBayar() async {
     String ur =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/alreadyPayForVideo/" +
+        "http://sampeweweh.dx.am/neon/index.php?Apii/alreadyPayForEcourse/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -227,7 +197,7 @@ class _VideoState extends State<Video> {
   }
 
   void insertRating(String rating) {
-    var url = "http://sampeweweh.dx.am/neon/index.php?Apii/insertRating/" +
+    var url = "http://sampeweweh.dx.am/neon/index.php?Apii/insertRatingEcourse/" +
         data_login[2] +
         "/" +
         id +
@@ -396,5 +366,10 @@ class _VideoState extends State<Video> {
                   ),
                 ],
               ));
+  }
+   @override
+  void dispose() {
+    super.dispose();
+    // IMPORTANT to dispose of all the used resources   
   }
 }

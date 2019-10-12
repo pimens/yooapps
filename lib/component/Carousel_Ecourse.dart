@@ -4,20 +4,19 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
+import 'package:neonton/pageVideo/Ecourse.dart';
 
-import 'package:neonton/pageVideo/Video.dart';
-
-class Carousel extends StatefulWidget {
+class Carousel_Ecourse extends StatefulWidget {
   final String url;
-  Carousel({this.url});
+  Carousel_Ecourse({this.url});
   @override
-  _CarouselState createState() => _CarouselState(url: url);
+  _Carousel_EcourseState createState() => _Carousel_EcourseState(url: url);
 }
 
-class _CarouselState extends State<Carousel> {
+class _Carousel_EcourseState extends State<Carousel_Ecourse> {
   String url;
   static const Cubic fastOutSlowIn = Cubic(0.4, 0.0, 0.2, 1.0);
-  _CarouselState({this.url});
+  _Carousel_EcourseState({this.url});
   static double h = 80;
   List data = [];
   Future<String> getData() async {
@@ -79,7 +78,7 @@ class _CarouselState extends State<Carousel> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          Video(id: d['id_video'].toString(),harga: d['harga'],),
+                                          Ecourse(id: d['id_video'].toString(),harga: d['harga'],),
                                     ),
                                   );
                                 },

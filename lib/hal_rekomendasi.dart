@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/component/Carousel.dart';
+import 'package:neonton/component/Carousel_Ecourse.dart';
 import 'dart:core';
 
 class Rekomendasi extends StatefulWidget {
@@ -15,7 +16,8 @@ class _RekomendasiState extends State<Rekomendasi> {
       body: new Container(
           child: new Column(
         children: <Widget>[
-          Carousel(url: "http://sampeweweh.dx.am/neon/index.php?Apii/getVideo"),
+          Carousel_Ecourse(url: "http://sampeweweh.dx.am/neon/index.php?Apii/getEcourseByKategori/course"),
+          // Carousel(url: "http://sampeweweh.dx.am/neon/index.php?Apii/getVideo/"),
           Divider(),
           Expanded(
             child: ListView(

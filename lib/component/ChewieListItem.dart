@@ -6,8 +6,10 @@ class ChewieListItem extends StatefulWidget {
   // This will contain the URL/asset path which we want to play
   final VideoPlayerController videoPlayerController;
   final bool looping;
+  final String url;
 
   ChewieListItem({
+    this.url,
     @required this.videoPlayerController,
     this.looping,
     Key key,
@@ -25,6 +27,7 @@ class _ChewieListItemState extends State<ChewieListItem> {
     super.initState();
     // Wrapper on top of the videoPlayerController
     _chewieController = ChewieController(
+      // videoPlayerController: VideoPlayerController.network(widget.url),
       videoPlayerController: widget.videoPlayerController,
       aspectRatio: 16 / 9,
       // Prepare the video to be played and display the first frame
@@ -55,9 +58,10 @@ class _ChewieListItemState extends State<ChewieListItem> {
 
   @override
   void dispose() {
-    super.dispose();
     // IMPORTANT to dispose of all the used resources
-    widget.videoPlayerController.dispose();
+  _chewieController.pause();
+   widget.videoPlayerController.dispose();
     _chewieController.dispose();
+    super.dispose();
   }
 }
