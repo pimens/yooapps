@@ -44,7 +44,7 @@ class _Carousel_EcourseState extends State<Carousel_Ecourse> {
         Container(
             margin: EdgeInsets.only(top: 20),
             child: CarouselSlider(
-                height: h,
+                height: 140,
                 aspectRatio: 16 / 9,
                 viewportFraction: 0.8,
                 initialPage: 0,

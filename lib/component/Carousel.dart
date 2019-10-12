@@ -45,7 +45,7 @@ class _CarouselState extends State<Carousel> {
         Container(
             margin: EdgeInsets.only(top: 20),
             child: CarouselSlider(
-                height: h,
+                height: 150,
                 aspectRatio: 16 / 9,
                 viewportFraction: 0.8,
                 initialPage: 0,
