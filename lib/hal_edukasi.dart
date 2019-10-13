@@ -14,7 +14,7 @@ class Edukasi extends StatefulWidget {
 class _EdukasiState extends State<Edukasi> {
  List data = [];
   Future<String> getData() async {
-    String url = "http://sampeweweh.dx.am/neon/index.php?Apii/getEcourse";
+    String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourse";
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -39,7 +39,7 @@ class _EdukasiState extends State<Edukasi> {
       body: new Container(
           child: new Column(
         children: <Widget>[
-          // Carousel(url: "http://sampeweweh.dx.am/neon/index.php?Apii/getVideo"),
+          // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo"),
           Divider(),
           Expanded(
             child: Padding(

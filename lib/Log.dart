@@ -17,7 +17,7 @@ class _LogState extends State<Log> {
   List data = [];
   Future<String> getData() async {
     String url =
-        'http://sampeweweh.dx.am/neon/index.php?Apii/getUser/informatika15/' +
+        'http://infinacreativa.com/neonton/index.php?Apii/getUser/informatika15/' +
             passController.text;
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
@@ -31,9 +31,10 @@ class _LogState extends State<Log> {
         // prefs.setString('login', 'hello');
         prefs.setStringList('login', [
           data[0]['name'].toString(),
-          data[0]['email'].toString(),
+          data[0]['foto'].toString(),
           data[0]['user_id'].toString(),
-          data[0]['saldo'].toString()
+          data[0]['saldo'].toString(),
+          // data[0]['foto'].toString(),
         ]);
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => Home()),

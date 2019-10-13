@@ -49,7 +49,7 @@ class TopupState extends State<Topup> {
   }
 
   upload(String fileName) async {
-    var url = 'http://192.168.0.108/webNeon/index.php?Apii/uploadBukti';
+    var url = 'http://infinacreativa.com/neonton/index.php?Apii/uploadBukti';
     var response = await http.post(url, body: {
       "image": base64Image,
       "name": fileName,

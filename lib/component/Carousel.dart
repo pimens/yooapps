@@ -88,7 +88,7 @@ class _CarouselState extends State<Carousel> {
                                   margin: EdgeInsets.symmetric(horizontal: 5.0),
                                   decoration: BoxDecoration(color: Colors.grey),
                                   child: Image.network(
-                                    // http://192.168.0.108/webNeon/assets/global/video_thumb/'+
+                                    // http://infinacreativa.com/neonton/assets/global/video_thumb/'+
                                     d['thumbnail'].toString(),
                                   ),
                                 ));

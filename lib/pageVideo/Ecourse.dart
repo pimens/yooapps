@@ -34,15 +34,16 @@ class _EcourseState extends State<Ecourse> {
 
   //pembayaran
   Future<String> pembayaran() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/payEcourse/" +
+    String ur = "http://infinacreativa.com/neonton/index.php?Apii/payEcourse/" +
         data_login[2] +
         "/" +
         id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     //getSaldobaru
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getUserById/' +
-        data_login[2];
+    String url =
+        'http://infinacreativa.com/neonton/index.php?Apii/getUserById/' +
+            data_login[2];
     List d = [];
     res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
@@ -133,7 +134,8 @@ class _EcourseState extends State<Ecourse> {
   }
 
   Future<String> getData() async {
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getEcourseById/';
+    String url =
+        'http://infinacreativa.com/neonton/index.php?Apii/getEcourseById/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -147,7 +149,7 @@ class _EcourseState extends State<Ecourse> {
   }
 
   Future<String> getMateri() async {
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getMateri/';
+    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getMateri/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -162,7 +164,8 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> getRating() async {
     String ur =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/getRatingEcourse/" + id;
+        "http://infinacreativa.com/neonton/index.php?Apii/getRatingEcourse/" +
+            id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -177,7 +180,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> cekRating() async {
     String ur =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/cekRatingEcourse/" +
+        "http://infinacreativa.com/neonton/index.php?Apii/cekRatingEcourse/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -193,7 +196,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> cekBayar() async {
     String ur =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/alreadyPayForEcourse/" +
+        "http://infinacreativa.com/neonton/index.php?Apii/alreadyPayForEcourse/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -211,13 +214,13 @@ class _EcourseState extends State<Ecourse> {
   @override
   void initState() {
     super.initState();
-    getValuesSF();
     rate = false;
+    getValuesSF();
   }
 
   void insertRating(String rating) {
     var url =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/insertRatingEcourse/" +
+        "http://infinacreativa.com/neonton/index.php?Apii/insertRatingEcourse/" +
             data_login[2] +
             "/" +
             id +
@@ -235,7 +238,7 @@ class _EcourseState extends State<Ecourse> {
           backgroundColor: Color(0xFF3B3A3A),
           title: new Center(
             child: new Text("NEONTON"),
-          ),          
+          ),
         ),
         drawer: Draw(),
         body: data.length == 0
@@ -273,7 +276,7 @@ class _EcourseState extends State<Ecourse> {
                   new Container(
                     child: new ChewieListItem(
                       videoPlayerController: VideoPlayerController.network(
-                        // http://192.168.0.108/webNeon/assets/global/video/'
+                        // http://infinacreativa.com/neonton/assets/global/video/'
                         data.length == 0
                             ? "http://"
                             : data[0]['file_video'].toString(),
@@ -301,32 +304,25 @@ class _EcourseState extends State<Ecourse> {
                               Divider(),
                               Row(
                                 children: <Widget>[
-                                  new Text("Rating         : "),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: <Widget>[
-                                      rtg.length == 0
-                                          ? new Text(" 0 ")
-                                          : rtg[0]['rating'].toString() ==
-                                                  "null"
-                                              ? new Text(" 0 ")
-                                              : new Text(
-                                                  rtg[0]['rating'].toString()),
-                                      cekrtg.length > 0
-                                          ? new Text("")
-                                          : rate == false
-                                              ? new RaisedButton(
-                                                  //cek apakah user sudah rate taroh disni nanti
-                                                  child: new Text("Rate!"),
-                                                  onPressed: () {
-                                                    setState(() {
-                                                      rate = !rate;
-                                                    });
-                                                  })
-                                              : new Text(" "),
-                                    ],
-                                  ),
+                                  //sementara pakai rating begini, nnti jadi db, sebelum nampilin data harus cek db apakah user sudah rate atau belum
+                                  new Text("Rating : "),
+                                  // new Text(data[0]['rating'].toString() + "   "),
+                                  rtg.length == 0
+                                      ? new Text(" 0 ")
+                                      : new Text(rtg[0]['rating'].toString()),
+                                  cekrtg.length > 0
+                                      ? new Text("")
+                                      : rate == false
+                                          ? new RaisedButton(
+                                              //cek apakah user sudah rate taroh disni nanti
+                                              child:
+                                                  new Text("Rate this video"),
+                                              onPressed: () {
+                                                setState(() {
+                                                  rate = !rate;
+                                                });
+                                              })
+                                          : new Text("data"),
                                   rate == false
                                       ? new Text("")
                                       : new Row(

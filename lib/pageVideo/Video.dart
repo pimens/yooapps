@@ -31,14 +31,14 @@ class _VideoState extends State<Video> {
 
   //pembayaran
   Future<String> pembayaran() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/payVideo/" +
+    String ur = "http://infinacreativa.com/neonton/index.php?Apii/payVideo/" +
         data_login[2] +
         "/" +
         id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     //getSaldobaru
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getUserById/' +
+    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getUserById/' +
         data_login[2];
     List d = [];
     res = await http
@@ -129,7 +129,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getData() async {
-    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getVideoById/';
+    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getVideoById/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -143,7 +143,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/getRating/" + id;
+    String ur = "http://infinacreativa.com/neonton/index.php?Apii/getRating/" + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -157,7 +157,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> cekRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/cekRating/" +
+    String ur = "http://infinacreativa.com/neonton/index.php?Apii/cekRating/" +
         data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -173,7 +173,7 @@ class _VideoState extends State<Video> {
 
   Future<String> cekBayar() async {
     String ur =
-        "http://sampeweweh.dx.am/neon/index.php?Apii/alreadyPayForVideo/" +
+        "http://infinacreativa.com/neonton/index.php?Apii/alreadyPayForVideo/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -195,7 +195,7 @@ class _VideoState extends State<Video> {
   }
 
   void insertRating(String rating) {
-    var url = "http://sampeweweh.dx.am/neon/index.php?Apii/insertRating/" +
+    var url = "http://infinacreativa.com/neonton/index.php?Apii/insertRating/" +
         data_login[2] +
         "/" +
         id +
@@ -261,7 +261,7 @@ class _VideoState extends State<Video> {
                   new Container(
                     child: new ChewieListItem(
                       videoPlayerController: VideoPlayerController.network(
-                        // http://192.168.0.108/webNeon/assets/global/video/'
+                        // http://infinacreativa.com/neonton/assets/global/video/'
                         data.length == 0
                             ? "http://"
                             : data[0]['file_video'].toString(),

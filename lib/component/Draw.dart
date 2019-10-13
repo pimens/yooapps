@@ -134,7 +134,7 @@ class Draw extends StatelessWidget {
   }
 
   Widget DrLogin(BuildContext context) {
-    return Drawer(      
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
@@ -152,12 +152,10 @@ class Draw extends StatelessWidget {
               ],
             ),
             currentAccountPicture: GestureDetector(
-              child: new CircleAvatar(
-                backgroundColor: Colors.black,
-                child: Icon(
-                  Icons.person_add,
-                  color: Colors.white,
-                ),
+              child: SizedBox(
+                width: 128,
+                height: 128,
+                child: Image.network("http://infinacreativa.com/neonton/"+data_login[1].toString()),
               ),
             ),
             decoration: BoxDecoration(

@@ -16,7 +16,7 @@ class Entertaiment extends StatefulWidget {
 class _EntertaimentState extends State<Entertaiment> {
   List data = [];
   Future<String> getData() async {
-    String url = "http://sampeweweh.dx.am/neon/index.php?Apii/getEcourse";
+    String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourse";
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -41,7 +41,7 @@ class _EntertaimentState extends State<Entertaiment> {
       body: new Container(
           child: new Column(
         children: <Widget>[
-          // Carousel(url: "http://sampeweweh.dx.am/neon/index.php?Apii/getVideo"),
+          // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo"),
           Divider(),
           Expanded(
             child: Padding(

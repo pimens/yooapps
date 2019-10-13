@@ -23,7 +23,7 @@ class _SearchPageState extends State<SearchPage> {
   Future<String> getData(String key) async {
     this.keyword = key;
     final String url =
-        'http://sampeweweh.dx.am/neon/index.php?Apii/getEcourseByTitle/' +
+        'http://infinacreativa.com/neonton/index.php?Apii/getEcourseByTitle/' +
             key;
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});

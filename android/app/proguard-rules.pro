@@ -5,8 +5,4 @@
 -keep class io.flutter.view.**  { *; }
 -keep class io.flutter.**  { *; }
 -keep class io.flutter.plugins.**  { *; }
--ignorewarnings
-
--keep class * {
-    public private *;
-}
+-dontwarn io.flutter.embedding.**
