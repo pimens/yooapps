@@ -9,6 +9,7 @@ import 'dart:convert';
 import 'dart:core';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Ecourse extends StatefulWidget {
   String id = "";
@@ -28,6 +29,7 @@ class _EcourseState extends State<Ecourse> {
   List data = [], byr = [];
   List cekrtg = [];
   List rtg = [];
+  List materi = [];
   List data_login = [];
 
   //pembayaran
@@ -104,7 +106,7 @@ class _EcourseState extends State<Ecourse> {
     );
   }
 
-    getValuesSF() async {
+  getValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     data_login = prefs.getStringList('login') ?? [];
     if (data_login.length == 0) {
@@ -126,6 +128,7 @@ class _EcourseState extends State<Ecourse> {
     } else {
       getData();
       getRating();
+      getMateri();
     }
   }
 
@@ -143,8 +146,23 @@ class _EcourseState extends State<Ecourse> {
     return 'success!';
   }
 
+  Future<String> getMateri() async {
+    String url = 'http://sampeweweh.dx.am/neon/index.php?Apii/getMateri/';
+    String ur = url + id;
+    var res = await http
+        .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
+    if (this.mounted) {
+      setState(() {
+        var content = json.decode(res.body);
+        materi = content;
+      });
+    }
+    return 'success!';
+  }
+
   Future<String> getRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/getRatingEcourse/" + id;
+    String ur =
+        "http://sampeweweh.dx.am/neon/index.php?Apii/getRatingEcourse/" + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -158,8 +176,9 @@ class _EcourseState extends State<Ecourse> {
   }
 
   Future<String> cekRating() async {
-    String ur = "http://sampeweweh.dx.am/neon/index.php?Apii/cekRatingEcourse/" +
-        data_login[2];
+    String ur =
+        "http://sampeweweh.dx.am/neon/index.php?Apii/cekRatingEcourse/" +
+            data_login[2];
     ur = ur + "/" + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -193,17 +212,19 @@ class _EcourseState extends State<Ecourse> {
   void initState() {
     super.initState();
     getValuesSF();
+    rate = false;
   }
 
   void insertRating(String rating) {
-    var url = "http://sampeweweh.dx.am/neon/index.php?Apii/insertRatingEcourse/" +
-        data_login[2] +
-        "/" +
-        id +
-        "/" +
-        rating;
+    var url =
+        "http://sampeweweh.dx.am/neon/index.php?Apii/insertRatingEcourse/" +
+            data_login[2] +
+            "/" +
+            id +
+            "/" +
+            rating;
     http.get(url).then((response) {
-      getRating();      
+      getRating();
     });
   }
 
@@ -214,8 +235,7 @@ class _EcourseState extends State<Ecourse> {
           backgroundColor: Color(0xFF3B3A3A),
           title: new Center(
             child: new Text("NEONTON"),
-          ),
-          actions: <Widget>[new Icon(Icons.search)],
+          ),          
         ),
         drawer: Draw(),
         body: data.length == 0
@@ -227,12 +247,6 @@ class _EcourseState extends State<Ecourse> {
                 children: <Widget>[
                   new Container(
                     margin: EdgeInsets.only(top: 10.0),
-                    decoration: new BoxDecoration(
-                      color: Color(0xFF3B3A3A),
-                      // gradient: new LinearGradient(
-                      //   colors: [Colors.red, Colors.cyan],
-                      // ),
-                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
@@ -244,10 +258,6 @@ class _EcourseState extends State<Ecourse> {
                                   data[0]['judul'].toString(),
                                   style: TextStyle(
                                     fontSize: 30,
-                                    foreground: Paint()
-                                      ..style = PaintingStyle.stroke
-                                      ..strokeWidth = 1
-                                      ..color = Colors.white,
                                   ),
                                 ),
                         ),
@@ -255,6 +265,7 @@ class _EcourseState extends State<Ecourse> {
                       ],
                     ),
                   ),
+                  Divider(),
 
                   ///kalau untuk yang harus bayar lagi cek lagi dbnya videonya bimbel apa bukan taruh sini,
                   ///habis cek di db movie cek lagi di db user buy video, si user udh beli apa blum bru
@@ -269,106 +280,167 @@ class _EcourseState extends State<Ecourse> {
                       ),
                     ),
                   ),
-                  Container(
-                    alignment: Alignment.bottomLeft,
-                    margin: EdgeInsets.only(left: 15.0),
-                    child: Column(
+                  Divider(),
+                  Expanded(
+                    child: ListView(
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            new Text('Views : '),
-                            data.length == 0
-                                ? Text("")
-                                : new Text(data[0]["view"].toString() + " x"),
-                          ],
-                        ),
-                        Divider(),
-                        Row(
-                          children: <Widget>[
-                            //sementara pakai rating begini, nnti jadi db, sebelum nampilin data harus cek db apakah user sudah rate atau belum
-                            new Text("Rating : "),
-                            // new Text(data[0]['rating'].toString() + "   "),
-                            rtg.length == 0
-                                ? new Text(" 0 ")
-                                : new Text(rtg[0]['rating'].toString()),
-                            cekrtg.length > 0
-                                ? new Text("")
-                                : rate == false
-                                    ? new RaisedButton(
-                                        //cek apakah user sudah rate taroh disni nanti
-                                        child: new Text("Rate this video"),
-                                        onPressed: () {
-                                          setState(() {
-                                            rate = !rate;
-                                          });
-                                        })
-                                    : new Text("data"),
-                            rate == false
-                                ? new Text("")
-                                : new Row(
-                                    children: <Widget>[
-                                      new FlutterRatingBar(
-                                        initialRating: rtg.length == 0
-                                            ? 0
-                                            : rtg[0]['rating'].toString() ==
-                                                        "null" ||
-                                                    rtg.length < 0
-                                                ? 0
-                                                : double.parse(rtg[0]['rating']
-                                                    .toString()),
-                                        itemSize: 25.0,
-                                        // noRatingWidget: true,
-                                        fillColor: Colors.amber,
-                                        borderColor: Colors.amber.withAlpha(50),
-                                        allowHalfRating: true,
-                                        onRatingUpdate: (rating) {
-                                          // print(rating);
-                                          insertRating(rating.toString());
-                                        },
-                                      ),
-                                      new RaisedButton(
-                                          child: new Text("Rate"),
-                                          onPressed: () {
-                                            setState(() {
-                                              rate = !rate;
-                                            });
-                                          }),
-                                    ],
-                                  )
-                          ],
-                        ),
-                        Divider(),
-                        Row(
-                          children: <Widget>[
-                            new Text("description : "),
-                            Expanded(
-                              child: new Container(
-                                width: MediaQuery.of(context).size.width,
-                                child: data.length == 0
-                                    ? Text("")
-                                    : new Text(
-                                        data[0]['deskripsi_video'].toString()),
+                        Container(
+                          alignment: Alignment.bottomLeft,
+                          margin: EdgeInsets.only(left: 15.0),
+                          child: Column(
+                            children: <Widget>[
+                              Row(
+                                children: <Widget>[
+                                  new Text('Views          : '),
+                                  data.length == 0
+                                      ? Text("")
+                                      : new Text(
+                                          data[0]["view"].toString() + " x"),
+                                ],
                               ),
-                            )
-                          ],
+                              Divider(),
+                              Row(
+                                children: <Widget>[
+                                  new Text("Rating         : "),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      rtg.length == 0
+                                          ? new Text(" 0 ")
+                                          : rtg[0]['rating'].toString() ==
+                                                  "null"
+                                              ? new Text(" 0 ")
+                                              : new Text(
+                                                  rtg[0]['rating'].toString()),
+                                      cekrtg.length > 0
+                                          ? new Text("")
+                                          : rate == false
+                                              ? new RaisedButton(
+                                                  //cek apakah user sudah rate taroh disni nanti
+                                                  child: new Text("Rate!"),
+                                                  onPressed: () {
+                                                    setState(() {
+                                                      rate = !rate;
+                                                    });
+                                                  })
+                                              : new Text(" "),
+                                    ],
+                                  ),
+                                  rate == false
+                                      ? new Text("")
+                                      : new Row(
+                                          children: <Widget>[
+                                            new FlutterRatingBar(
+                                              initialRating: rtg.length == 0
+                                                  ? 0
+                                                  : rtg[0]['rating']
+                                                                  .toString() ==
+                                                              "null" ||
+                                                          rtg.length < 0
+                                                      ? 0
+                                                      : double.parse(rtg[0]
+                                                              ['rating']
+                                                          .toString()),
+                                              itemSize: 25.0,
+                                              // noRatingWidget: true,
+                                              fillColor: Colors.amber,
+                                              borderColor:
+                                                  Colors.amber.withAlpha(50),
+                                              allowHalfRating: true,
+                                              onRatingUpdate: (rating) {
+                                                // print(rating);
+                                                insertRating(rating.toString());
+                                              },
+                                            ),
+                                            new RaisedButton(
+                                                child: new Text("Rate"),
+                                                onPressed: () {
+                                                  setState(() {
+                                                    rate = !rate;
+                                                  });
+                                                }),
+                                          ],
+                                        )
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: <Widget>[
+                                  new Text("Deskripsi    : "),
+                                  Expanded(
+                                    child: new Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: data.length == 0
+                                          ? Text("")
+                                          : new Text(data[0]['deskripsi_video']
+                                              .toString()),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: <Widget>[
+                                  new Text("Kategori      : "),
+                                  Expanded(
+                                    child: new Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: data.length == 0
+                                          ? Text("")
+                                          : new Text(
+                                              data[0]['kategori'].toString()),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: <Widget>[
+                                  new Text("Materi          : "),
+                                  Expanded(
+                                    child: ListView.builder(
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount:
+                                          materi == null ? 0 : materi.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        Map mt = materi[index];
+
+                                        return GestureDetector(
+                                          onTap: () {
+                                            launch(mt['path'].toString());
+                                          },
+                                          child: Text(
+                                            (index + 1).toString() +
+                                                ". " +
+                                                mt['judul'].toString(),
+                                            style: TextStyle(
+                                              color: Colors.blue,
+                                              decorationStyle:
+                                                  TextDecorationStyle.wavy,
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                        Divider(),
-                        Row(
-                          children: <Widget>[
-                            new Text("Genre"),
-                            new Text("Komedi"),
-                          ],
-                        ),
-                        Divider(),
                       ],
                     ),
                   ),
                 ],
               ));
   }
-   @override
+
+  @override
   void dispose() {
     super.dispose();
-    // IMPORTANT to dispose of all the used resources   
   }
 }

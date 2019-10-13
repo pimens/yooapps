@@ -6,7 +6,6 @@ import 'package:neonton/pageVideo/Ecourse.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
-import 'package:neonton/pageVideo/Video.dart';
 
 class SearchPage extends StatefulWidget {
   String keyword;

@@ -103,37 +103,7 @@ class _VideoState extends State<Video> {
     );
   }
 
-  void saldoKurang() {
-    // flutter defined function
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return new WillPopScope(
-            onWillPop: () async => false,
-            child: AlertDialog(
-              title: new Text("Pembayaran"),
-              content: saldo != 0
-                  ? new Text("Tidak Cukup saldo")
-                  : new Text(
-                      "Apakah anda mau membeli video ini dengan harga : " +
-                          harga +
-                          " ? "),
-              actions: <Widget>[
-                new FlatButton(
-                  child: new Text("Close" + id),
-                  onPressed: () {
-                    // Navigator.pop(context);
-                    Navigator.of(context).pop();
-                    Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ));
-      },
-    );
-  }
-
-  getValuesSF() async {
+ getValuesSF() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     data_login = prefs.getStringList('login') ?? [];
     if (data_login.length == 0) {

@@ -134,12 +134,8 @@ class Draw extends StatelessWidget {
   }
 
   Widget DrLogin(BuildContext context) {
-    return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
+    return Drawer(      
       child: ListView(
-        // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
@@ -147,7 +143,7 @@ class Draw extends StatelessWidget {
             accountEmail: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(data_login[1].toString()),
+                // Text(data_login[1].toString()),
                 Container(
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only(right: 25.0),
