@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/component/Draw.dart';
 import 'package:http/http.dart' as http;
+import 'package:neonton/component/trending_item.dart';
+import 'package:neonton/pageVideo/Ecourse.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
@@ -16,18 +18,19 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   String keyword;
   _SearchPageState({this.keyword});
+  final TextEditingController _searchControl = new TextEditingController();
 
   List data = [];
-  Future<String> getData() async {
+  Future<String> getData(String key) async {
+    this.keyword = key;
     final String url =
-        'http://sampeweweh.dx.am/neon/index.php?Apii/getVideoByTitle/' +
-            keyword;
+        'http://sampeweweh.dx.am/neon/index.php?Apii/getEcourseByTitle/' +
+            key;
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
       setState(() {
         var content = json.decode(res.body);
-        // data = content['hasil'];
         data = content;
       });
     }
@@ -38,7 +41,7 @@ class _SearchPageState extends State<SearchPage> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getData(keyword);
   }
 
   @override
@@ -53,6 +56,54 @@ class _SearchPageState extends State<SearchPage> {
       drawer: Draw(),
       body: new Column(
         children: <Widget>[
+          Card(
+            elevation: 6.0,
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(5.0),
+                ),
+              ),
+              child: TextField(
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: Colors.black,
+                ),
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.all(10.0),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5.0),
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.white,
+                    ),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
+                  hintText: "Keyword Searching : " + keyword,
+                  suffixIcon: new IconButton(
+                    icon: new Icon(Icons.search),
+                    onPressed: () =>getData(_searchControl.text),
+                  ),
+                  // Icon(
+                  //   Icons.search,
+                  //   color: Colors.black,
+                  // ),
+                  hintStyle: TextStyle(
+                    fontSize: 15.0,
+                    color: Colors.black,
+                  ),
+                ),
+                maxLines: 1,
+                controller: _searchControl,
+              ),
+            ),
+          ),
+          SizedBox(height: 10.0),
           new Text(
             "Hasil Pencarian",
             style: TextStyle(
@@ -65,88 +116,44 @@ class _SearchPageState extends State<SearchPage> {
           ),
           Divider(),
           Expanded(
-            child: new Container(
-                child: new Center(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
               child: ListView(
-                  children: data == null
-                      ? null
-                      : data.map((d) {
-                          return new Container(
-                            child: Center(
-                              child: Column(
-                                children: <Widget>[                                  
-                                  GestureDetector(
-                                      onTap: () {
-                                        // Navigator.pushNamed(context, "/video");
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Video(
-                                              id: d['id_video'].toString(),
-                                              harga: d['harga'],
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        margin: EdgeInsets.symmetric(
-                                            horizontal: 5.0),
-                                        decoration:
-                                            BoxDecoration(color: Colors.white),
-                                        child: Image.network(
-                                          // http://192.168.0.108/webNeon/assets/global/video_thumb/'+
-                                          d['thumbnail'].toString(),
-                                        ),
-                                      )),
-                                  Container(
-                                      margin: EdgeInsets.only(left: 20.0),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(
-                                            Icons.add_box,
-                                            color: Colors.black,
-                                          ),
-                                          new Text(" " + d['judul'].toString()),
-                                        ],
-                                      )),
-                                  Divider(),
-                                  Row(
-                                    children: <Widget>[
-                                      Container(
-                                          margin: EdgeInsets.only(left: 20.0),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.remove_red_eye,
-                                                color: Colors.black,
-                                              ),
-                                              new Text(
-                                                  " " + d['view'].toString()),
-                                            ],
-                                          )),
-                                      Container(
-                                          margin: EdgeInsets.only(left: 20.0),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.money_off,
-                                                color: Colors.black,
-                                              ),
-                                              new Text(d['harga'].toString()),
-                                            ],
-                                          )),                                      
-                                    ],
-                                  ),
-                                  Divider(),
-                                  Divider()
-                                ],
+                children: <Widget>[
+                  SizedBox(height: 10.0),
+                  ListView.builder(
+                    primary: false,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: data == null ? 0 : data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      Map video = data[index];
+                      return GestureDetector(
+                          onTap: () {
+                            // Navigator.pushNamed(context, "/video");
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => Ecourse(
+                                  id: video['id_video'].toString(),
+                                  harga: video['harga'],
+                                ),
                               ),
-                            ),
-                          );
-                        }).toList()),
-            )),
+                            );
+                          },
+                          child: TrendingItem(
+                            img: video["thumbnail"].toString(),
+                            title: video["judul"],
+                            address: video["kategori"],
+                            rating: video["harga"],
+                            view: video["view"],
+                          ));
+                    },
+                  ),
+                  SizedBox(height: 10.0),
+                ],
+              ),
+            ),
           ),
         ],
       ),

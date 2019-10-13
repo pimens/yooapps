@@ -62,7 +62,6 @@ class _EcourseState extends State<Ecourse> {
 
   //popup pembayaran
   void _showDialog() {
-    // flutter defined function
     showDialog(
       context: context,
       builder: (BuildContext context) {

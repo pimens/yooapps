@@ -14,7 +14,7 @@ class Rekomendasi extends StatefulWidget {
 }
 
 class _RekomendasiState extends State<Rekomendasi> {
-   List data = [];
+  List data = [];
   Future<String> getData() async {
     String url = "http://sampeweweh.dx.am/neon/index.php?Apii/getEcourse";
     var res = await http

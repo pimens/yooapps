@@ -9,7 +9,6 @@ import 'dart:convert';
 import 'dart:core';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 class Video extends StatefulWidget {
   String id = "";
   String harga;
@@ -61,7 +60,7 @@ class _VideoState extends State<Video> {
   }
 
   //popup pembayaran
-  void _showDialog() {
+  void _showDialog() {   
     showDialog(
       context: context,
       builder: (BuildContext context) {

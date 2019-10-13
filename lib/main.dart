@@ -91,24 +91,27 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        backgroundColor: Color(0xFF3B3A3A),
-        centerTitle: true,
-        title: _appBarTitle,
-        actions: <Widget>[search(context)],
-        bottom: new TabBar(
-          controller: controller,
-          tabs: <Widget>[
-            Tab(
-              text: "Rekomendasi",
-            ),
-            Tab(
-              text: "Edukasi",
-            ),
-            Tab(
-              text: "Entertaiment",
-            ),
-          ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(85.0),
+        child: new AppBar(
+          backgroundColor: Color(0xFF3B3A3A),
+          centerTitle: true,
+          title: _appBarTitle,
+          actions: <Widget>[search(context)],
+          bottom: new TabBar(
+            controller: controller,
+            tabs: <Widget>[
+              Tab(
+                text: "Rekomendasi",
+              ),
+              Tab(
+                text: "Edukasi",
+              ),
+              Tab(
+                text: "Entertaiment",
+              ),
+            ],
+          ),
         ),
       ),
       drawer: Draw(),
@@ -122,5 +125,4 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       ),
     );
   }
- 
 }

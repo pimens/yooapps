@@ -21,8 +21,9 @@ class Draw extends StatelessWidget {
   logout(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.remove("login");
-    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-    Home()), (Route<dynamic> route) => false);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()),
+        (Route<dynamic> route) => false);
     // Navigator.push(
     //   context,
     //   MaterialPageRoute(
@@ -150,9 +151,8 @@ class Draw extends StatelessWidget {
                 Container(
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only(right: 25.0),
-                  child: Text("Rp. "+ data_login[3].toString(),
-                   style: TextStyle(fontSize: 24)
-                  )),
+                    child: Text("Rp. " + data_login[3].toString(),
+                        style: TextStyle(fontSize: 24))),
               ],
             ),
             currentAccountPicture: GestureDetector(
@@ -206,8 +206,8 @@ class Draw extends StatelessWidget {
                 color: Color(0xFF3B3A3A),
               ),
             ),
-          ), 
-           InkWell(
+          ),
+          InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Topup(),
             )),
@@ -264,18 +264,27 @@ class Draw extends StatelessWidget {
           Divider(),
           InkWell(
             onTap: () => logout(context),
-            child: ListTile(
-              title: Text(
-                'Logout',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Logout',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF3B3A3A),
+                    ),
+                  ),
+                  trailing: new Icon(
+                    Icons.power_settings_new,
+                    color: Colors.red,
+                  ),
+                  onTap: () => logout(context),
                 ),
-              ),
-              leading: Icon(
-                Icons.exit_to_app,
-                color: Colors.blue,
-              ),
+                SizedBox(
+                  height: MediaQuery.of(context).padding.bottom,
+                )
+              ],
             ),
           ),
         ],
