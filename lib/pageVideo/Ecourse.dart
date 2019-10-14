@@ -56,7 +56,7 @@ class _EcourseState extends State<Ecourse> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList('login', [
       d[0]['name'].toString(),
-      d[0]['email'].toString(),
+      d[0]['foto'].toString(),
       d[0]['user_id'].toString(),
       d[0]['saldo'].toString()
     ]);
@@ -253,16 +253,19 @@ class _EcourseState extends State<Ecourse> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Container(
-                          margin: EdgeInsets.only(left: 10.0),
-                          child: data.length == 0
-                              ? Text("")
-                              : Text(
-                                  data[0]['judul'].toString(),
-                                  style: TextStyle(
-                                    fontSize: 30,
+                        Expanded(
+                          child: new Container(
+                            padding: EdgeInsets.only(left: 7.0),
+                            width: MediaQuery.of(context).size.width,
+                            child: data.length == 0
+                                ? Text("")
+                                : Text(
+                                    data[0]['judul'].toString(),
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
                                   ),
-                                ),
+                          ),
                         ),
                         Divider()
                       ],
@@ -303,61 +306,39 @@ class _EcourseState extends State<Ecourse> {
                               ),
                               Divider(),
                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
-                                  //sementara pakai rating begini, nnti jadi db, sebelum nampilin data harus cek db apakah user sudah rate atau belum
-                                  new Text("Rating : "),
-                                  // new Text(data[0]['rating'].toString() + "   "),
-                                  rtg.length == 0
-                                      ? new Text(" 0 ")
-                                      : new Text(rtg[0]['rating'].toString()),
-                                  cekrtg.length > 0
-                                      ? new Text("")
-                                      : rate == false
-                                          ? new RaisedButton(
-                                              //cek apakah user sudah rate taroh disni nanti
-                                              child:
-                                                  new Text("Rate this video"),
-                                              onPressed: () {
-                                                setState(() {
-                                                  rate = !rate;
-                                                });
-                                              })
-                                          : new Text("data"),
-                                  rate == false
-                                      ? new Text("")
-                                      : new Row(
-                                          children: <Widget>[
-                                            new FlutterRatingBar(
-                                              initialRating: rtg.length == 0
-                                                  ? 0
-                                                  : rtg[0]['rating']
-                                                                  .toString() ==
-                                                              "null" ||
-                                                          rtg.length < 0
-                                                      ? 0
-                                                      : double.parse(rtg[0]
-                                                              ['rating']
-                                                          .toString()),
-                                              itemSize: 25.0,
-                                              // noRatingWidget: true,
-                                              fillColor: Colors.amber,
-                                              borderColor:
-                                                  Colors.amber.withAlpha(50),
-                                              allowHalfRating: true,
-                                              onRatingUpdate: (rating) {
-                                                // print(rating);
-                                                insertRating(rating.toString());
-                                              },
-                                            ),
-                                            new RaisedButton(
-                                                child: new Text("Rate"),
-                                                onPressed: () {
-                                                  setState(() {
-                                                    rate = !rate;
-                                                  });
-                                                }),
-                                          ],
+                                  Row(
+                                    children: <Widget>[
+                                      new Text("Rating         : "),
+                                      rtg.length == 0
+                                          ? Text("0")
+                                          : Text(rtg[0]['rating']),
+                                    ],
+                                  ),
+                                  cekrtg.length == 0
+                                      ? new FlutterRatingBar(
+                                          initialRating: 0,
+                                          itemSize: 25.0,
+                                          // noRatingWidget: true,
+                                          fillColor: Colors.amber,
+                                          borderColor:
+                                              Colors.amber.withAlpha(50),
+                                          allowHalfRating: true,
+                                          onRatingUpdate: (rating) {
+                                            // print(rating);
+                                            insertRating(rating.toString());
+                                          },
                                         )
+                                      : Text(""),
+                                  cekrtg.length == 0
+                                      ? new IconButton(
+                                          icon: new Icon(Icons.star,
+                                              color: Colors.yellow),
+                                          onPressed: () => {},
+                                        )
+                                      : Text("")
                                 ],
                               ),
                               Divider(),
