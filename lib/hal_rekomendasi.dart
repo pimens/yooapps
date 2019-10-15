@@ -8,6 +8,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:neonton/pageVideo/Ecourse.dart';
+
 class Rekomendasi extends StatefulWidget {
   @override
   _RekomendasiState createState() => _RekomendasiState();
@@ -40,8 +41,24 @@ class _RekomendasiState extends State<Rekomendasi> {
     return Scaffold(
       body: new Container(
           child: new Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Carousel_Ecourse(url: "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: EdgeInsets.only(top: 5, left: 10),
+              child: Text(
+                "Most Viewed",
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold
+                ),
+              ),
+            ),
+          ),
+          Carousel_Ecourse(
+              url:
+                  "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
           // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo/"),
           Divider(),
           Expanded(

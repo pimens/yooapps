@@ -262,7 +262,7 @@ class _EcourseState extends State<Ecourse> {
                                 : Text(
                                     data[0]['judul'].toString(),
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 20,                                      
                                     ),
                                   ),
                           ),
@@ -367,6 +367,21 @@ class _EcourseState extends State<Ecourse> {
                                           ? Text("")
                                           : new Text(
                                               data[0]['kategori'].toString()),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Divider(),
+                              Row(
+                                children: <Widget>[
+                                  new Text("Author         : "),
+                                  Expanded(
+                                    child: new Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      child: data.length == 0
+                                          ? Text("")
+                                          : new Text(
+                                              data[0]['author'].toString()),
                                     ),
                                   )
                                 ],

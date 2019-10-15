@@ -85,13 +85,9 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   hintText: "Keyword Searching : " + keyword,
                   suffixIcon: new IconButton(
-                    icon: new Icon(Icons.search),
+                    icon: new Icon(Icons.search,color: Colors.black,),
                     onPressed: () =>getData(_searchControl.text),
-                  ),
-                  // Icon(
-                  //   Icons.search,
-                  //   color: Colors.black,
-                  // ),
+                  ),                  
                   hintStyle: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
@@ -149,6 +145,7 @@ class _SearchPageState extends State<SearchPage> {
                           ));
                     },
                   ),
+                  Center(child: data.length == 0 ? Text("Tidak Ditemukan") : Text("")),
                   SizedBox(height: 10.0),
                 ],
               ),

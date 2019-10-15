@@ -69,28 +69,10 @@ class Draw extends StatelessWidget {
               ),
               leading: Icon(
                 Icons.home,
-                color: Color(0xFF3B3A3A),
+                color: Colors.green,
               ),
             ),
           ),
-          // InkWell(
-          //   onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-          //     builder: (BuildContext context) => new Rekomendasi(),
-          //   )),
-          //   child: ListTile(
-          //     title: Text(
-          //       'Rekomendasi',
-          //       style: TextStyle(
-          //         fontWeight: FontWeight.bold,
-          //         color: Color(0xFF3B3A3A),
-          //       ),
-          //     ),
-          //     leading: Icon(
-          //       Icons.event_available,
-          //       color: Color(0xFF3B3A3A),
-          //     ),
-          //   ),
-          // ),
           Divider(),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
@@ -105,11 +87,12 @@ class Draw extends StatelessWidget {
                 ),
               ),
               leading: Icon(
-                Icons.arrow_drop_down_circle,
-                color: Colors.black,
+                Icons.input,
+                color: Colors.redAccent,
               ),
             ),
           ),
+          Divider(),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Tentang(),
@@ -128,6 +111,7 @@ class Draw extends StatelessWidget {
               ),
             ),
           ),
+          Divider(),
         ],
       ),
     );
@@ -142,8 +126,7 @@ class Draw extends StatelessWidget {
             accountName: Text(data_login[0].toString()),
             accountEmail: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                // Text(data_login[1].toString()),
+              children: <Widget>[              
                 Container(
                     alignment: Alignment.centerRight,
                     margin: EdgeInsets.only(right: 25.0),
@@ -152,10 +135,19 @@ class Draw extends StatelessWidget {
               ],
             ),
             currentAccountPicture: GestureDetector(
-              child: SizedBox(
-                width: 128,
-                height: 128,
-                child: Image.network("http://infinacreativa.com/neonton/"+data_login[1].toString()),
+              child: Container(
+                height: 90.0,
+                width: 90.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image: NetworkImage("http://infinacreativa.com/neonton/" +
+                          data_login[1].toString())),
+                  border: Border.all(
+                    color: Colors.white,
+                    width: 5.0,
+                  ),
+                ),
               ),
             ),
             decoration: BoxDecoration(
@@ -250,8 +242,8 @@ class Draw extends StatelessWidget {
                 ),
               ),
               leading: Icon(
-                Icons.help,
-                color: Colors.blue,
+                Icons.info,
+                color: Colors.black,
               ),
             ),
           ),

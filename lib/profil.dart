@@ -23,8 +23,9 @@ class _ProfilState extends State<Profil> {
   List dataProfil = [];
   List data_login = [];
   Future<String> getProfil() async {
-    String ur = "http://infinacreativa.com/neonton/index.php?Apii/getUserById/" +
-        data_login[2];
+    String ur =
+        "http://infinacreativa.com/neonton/index.php?Apii/getUserById/" +
+            data_login[2];
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -33,6 +34,13 @@ class _ProfilState extends State<Profil> {
         dataProfil = content;
       });
     }
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('login', [
+      dataProfil[0]['name'].toString(),
+      dataProfil[0]['foto'].toString(),
+      dataProfil[0]['user_id'].toString(),
+      dataProfil[0]['saldo'].toString()
+    ]);
     return "ok";
   }
 
@@ -60,8 +68,7 @@ class _ProfilState extends State<Profil> {
       status = message;
     });
   }
-
-  startUpload() {
+startUpload() {
     setStatus('Uploading Image...');
     if (null == tmpFile) {
       setStatus(errMessage);
@@ -70,6 +77,15 @@ class _ProfilState extends State<Profil> {
     String fileName = tmpFile.path.split('/').last;
     upload(fileName);
   }
+  // startUpload() {
+  //   setStatus('Uploading Image...');
+  //   if (null == tmpFile) {
+  //     setStatus(errMessage);
+  //     return;
+  //   }
+  //   String fileName = tmpFile.path.split('/').last;
+  //   upload(fileName);
+  // }
 
   upload(String fileName) async {
     var url = 'http://infinacreativa.com/neonton/index.php?Apii/editFoto';
@@ -93,12 +109,13 @@ class _ProfilState extends State<Profil> {
             null != snapshot.data) {
           tmpFile = snapshot.data;
           base64Image = base64Encode(snapshot.data.readAsBytesSync());
-          return Container(
-            child: Image.file(
-              snapshot.data,
-              fit: BoxFit.fill,
-            ),
-          );
+          return Text("");
+          // return Container(
+          //   child: Image.file(
+          //     snapshot.data,
+          //     fit: BoxFit.fill,
+          //   ),
+          // );
         } else if (null != snapshot.error) {
           return const Text(
             'Error Picking Image',
@@ -146,10 +163,12 @@ class _ProfilState extends State<Profil> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                          image:dataProfil.length == 0 ? NetworkImage("http://infinacreativa.com/neonton/assets/global/fotoUser/scaled_IMG-20191013-WA0001.jpg")
-                          : NetworkImage("http://infinacreativa.com/neonton/"+dataProfil[0]['foto'].toString())
-                          ) 
-                              ,
+                          image: dataProfil.length == 0
+                              ? NetworkImage(
+                                  "http://infinacreativa.com/neonton/assets/global/fotoUser/scaled_IMG-20191013-WA0001.jpg")
+                              : NetworkImage(
+                                  "http://infinacreativa.com/neonton/" +
+                                      dataProfil[0]['foto'].toString())),
                       border: Border.all(
                         color: Colors.white,
                         width: 5.0,
@@ -161,9 +180,9 @@ class _ProfilState extends State<Profil> {
               Positioned.fill(
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: new IconButton(
-                    icon: new Icon(Icons.camera_alt),
-                    onPressed: () => {chooseImage()},
+                  child: OutlineButton(
+                    onPressed: chooseImage,
+                    child: Icon(Icons.camera_enhance),
                   ),
                 ),
               ),
@@ -268,10 +287,6 @@ class _ProfilState extends State<Profil> {
                     ),
                     onPressed: () => {},
                   ),
-                  // Icon(
-                  //   Icons.search,
-                  //   color: Colors.black,
-                  // ),
                   hintStyle: TextStyle(
                     fontSize: 15.0,
                     color: Colors.black,
@@ -335,7 +350,7 @@ class _ProfilState extends State<Profil> {
           ),
           SizedBox(height: 10.0),
           // Text(status),
-          // showImage(),
+          showImage(),
           // Text(dataProfil[0]['foto'].toString())
         ],
       ),

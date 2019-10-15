@@ -5,6 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'package:neonton/pageVideo/Ecourse.dart';
+import 'package:neonton/util/const.dart';
 
 class Carousel_Ecourse extends StatefulWidget {
   final String url;
@@ -73,23 +74,117 @@ class _Carousel_EcourseState extends State<Carousel_Ecourse> {
                             h = 200;
                             return GestureDetector(
                                 onTap: () {
-                                  // Navigator.pushNamed(context, "/video");
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                          Ecourse(id: d['id_video'].toString(),harga: d['harga'],),
+                                      builder: (context) => Ecourse(
+                                        id: d['id_video'].toString(),
+                                        harga: d['harga'],
+                                      ),
                                     ),
                                   );
                                 },
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                  decoration: BoxDecoration(color: Colors.grey),
-                                  child: Image.network(
-                                    // http://infinacreativa.com/neonton/assets/global/video_thumb/'+
-                                    d['thumbnail'].toString(),
-                                  ),
+                                child: Stack(
+                                  children: <Widget>[
+                                    Container(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              3.5,
+                                      width: MediaQuery.of(context).size.width,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(10),
+                                          topRight: Radius.circular(10),
+                                        ),
+                                        child: Image.network(
+                                          d['thumbnail'],
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 6.0,
+                                      right: 6.0,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(4.0)),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(2.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.monetization_on,
+                                                color: Constants.darkPrimary,
+                                                size: 10,
+                                              ),
+                                              Text(
+                                                d['harga'],
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 26.0,
+                                      right: 6.0,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(3.0)),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Icon(
+                                                Icons.remove_red_eye,
+                                                color: Constants.darkPrimary,
+                                                size: 10,
+                                              ),
+                                              Text(
+                                                d['view'],
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      top: 6.0,
+                                      left: 6.0,
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(3.0)),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(4.0),
+                                          child: Row(
+                                            children: <Widget>[
+                                              Text(
+                                                d['kategori'],
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.green,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ));
                           },
                         );
