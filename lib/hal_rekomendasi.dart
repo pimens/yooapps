@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/component/Carousel.dart';
+// import 'package:neonton/component/Carousel.dart';
 import 'package:neonton/component/Carousel_Ecourse.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
@@ -49,10 +49,7 @@ class _RekomendasiState extends State<Rekomendasi> {
               margin: EdgeInsets.only(top: 5, left: 10),
               child: Text(
                 "Most Viewed",
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
           ),
@@ -64,38 +61,98 @@ class _RekomendasiState extends State<Rekomendasi> {
           Expanded(
             child: Padding(
               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+              //listview Scroll atas bawah
               child: ListView(
+                // scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  SizedBox(height: 10.0),
-                  ListView.builder(
-                    primary: false,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
-                    itemCount: data == null ? 0 : data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      Map video = data[index];
-                      return GestureDetector(
-                          onTap: () {
-                            // Navigator.pushNamed(context, "/video");
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Ecourse(
-                                  id: video['id_video'].toString(),
-                                  harga: video['harga'],
-                                ),
-                              ),
-                            );
-                          },
-                          child: TrendingItem(
-                            img: video["thumbnail"].toString(),
-                            title: video["judul"],
-                            address: video["kategori"],
-                            rating: video["harga"],
-                            view: video["view"],
-                          ));
-                    },
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5, left: 10),
+                      child: Text(
+                        "General",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.0,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        primary: false,
+                        shrinkWrap: true,
+                        // physics: NeverScrollableScrollPhysics(),
+                        itemCount: data == null ? 0 : data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Map video = data[index];
+                          return GestureDetector(
+                              onTap: () {
+                                // Navigator.pushNamed(context, "/video");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Ecourse(
+                                      id: video['id_video'].toString(),
+                                      harga: video['harga'],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: TrendingItem(
+                                img: video["thumbnail"].toString(),
+                                title: video["judul"],
+                                address: video["kategori"],
+                                rating: video["harga"],
+                                view: video["view"],
+                              ));
+                        },
+                      )),
+                  Divider(),
+                  //Ecoures
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5, left: 10),
+                      child: Text(
+                        "Ecourse",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height / 3.2,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        primary: false,
+                        // shrinkWrap: true,
+                        // physics: NeverScrollableScrollPhysics(),
+                        itemCount: data == null ? 0 : data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          Map video = data[index];
+                          return GestureDetector(
+                              onTap: () {
+                                // Navigator.pushNamed(context, "/video");
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Ecourse(
+                                      id: video['id_video'].toString(),
+                                      harga: video['harga'],
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: TrendingItem(
+                                img: video["thumbnail"].toString(),
+                                title: video["judul"],
+                                address: video["kategori"],
+                                rating: video["harga"],
+                                view: video["view"],
+                              ));
+                        },
+                      )),
                   SizedBox(height: 10.0),
                 ],
               ),

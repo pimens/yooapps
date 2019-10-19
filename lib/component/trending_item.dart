@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/util/const.dart';
+import 'package:expandable/expandable.dart';
 
 class TrendingItem extends StatefulWidget {
   final String img;
@@ -22,13 +23,31 @@ class TrendingItem extends StatefulWidget {
 }
 
 class _TrendingItemState extends State<TrendingItem> {
+  Widget judul(BuildContext context) {
+    return ExpandablePanel(
+      // header: Text("xxx"),
+      collapsed: Text(
+        " ${widget.title} ",
+        softWrap: true,
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
+      ),
+      expanded: Text(
+        " ${widget.title} ",
+        softWrap: true,
+      ),
+      tapHeaderToExpand: true,
+      hasIcon: true,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(
-        height: MediaQuery.of(context).size.height / 2.5,
-        width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height / 1.0,
+        width: MediaQuery.of(context).size.width / 1.5,
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
@@ -38,7 +57,7 @@ class _TrendingItemState extends State<TrendingItem> {
               Stack(
                 children: <Widget>[
                   Container(
-                    height: MediaQuery.of(context).size.height / 3.5,
+                    height: MediaQuery.of(context).size.height / 5.0,
                     width: MediaQuery.of(context).size.width,
                     child: ClipRRect(
                       borderRadius: BorderRadius.only(
@@ -133,33 +152,39 @@ class _TrendingItemState extends State<TrendingItem> {
                 ],
               ),
               SizedBox(height: 7.0),
-              Padding(
-                padding: EdgeInsets.only(left: 15.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.add_box,
-                        color: Constants.darkPrimary,
-                        size: 16,
-                      ),
-                      Expanded(
-                        child: new Container(
-                          padding: EdgeInsets.only(left: 7.0),
-                          width: MediaQuery.of(context).size.width,
-                          child: Text(
-                            "${widget.title}",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w800,
+              Expanded(
+                child: ListView(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(left: 15.0),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.add_box,
+                              color: Constants.darkPrimary,
+                              size: 16,
                             ),
-                            textAlign: TextAlign.left,
-                          ),
+                            Expanded(
+                              child: new Container(
+                                  padding: EdgeInsets.only(left: 7.0),
+                                  width: MediaQuery.of(context).size.width,
+                                  // child: Text(
+                                  //   " ${widget.title} ",
+                                  //   style: TextStyle(
+                                  //     fontSize: 20,
+                                  //     color: Colors.green,
+                                  //     fontWeight: FontWeight.bold,
+                                  //   ),
+                                  // )),
+                                  child: judul(context)),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 10.0),
