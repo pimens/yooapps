@@ -16,6 +16,8 @@ class Rekomendasi extends StatefulWidget {
 
 class _RekomendasiState extends State<Rekomendasi> {
   List data = [];
+  List bimbel = [];
+
   Future<String> getData() async {
     String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourse";
     var res = await http
@@ -28,11 +30,24 @@ class _RekomendasiState extends State<Rekomendasi> {
     }
     return 'success!';
   }
+   Future<String> getBimbel() async {
+    String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/bimbel";
+    var res = await http
+        .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
+    if (this.mounted) {
+      setState(() {
+        var content = json.decode(res.body);
+        bimbel = content;
+      });
+    }
+    return 'success!';
+  }
 
   @override
   void initState() {
     super.initState();
     getData();
+    getBimbel();
   }
 
   static const Cubic fastOutSlowIn = Cubic(0.4, 0.0, 0.2, 1.0);
@@ -115,22 +130,22 @@ class _RekomendasiState extends State<Rekomendasi> {
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
                       child: Text(
-                        "Ecourse",
+                        "Bimbel",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height / 3.2,
+                      height: MediaQuery.of(context).size.height / 3.0,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         primary: false,
                         // shrinkWrap: true,
                         // physics: NeverScrollableScrollPhysics(),
-                        itemCount: data == null ? 0 : data.length,
+                        itemCount: bimbel == null ? 0 : bimbel.length,
                         itemBuilder: (BuildContext context, int index) {
-                          Map video = data[index];
+                          Map video = bimbel[index];
                           return GestureDetector(
                               onTap: () {
                                 // Navigator.pushNamed(context, "/video");

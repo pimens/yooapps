@@ -15,6 +15,7 @@ class Profil extends StatefulWidget {
 class _ProfilState extends State<Profil> {
   ///jangan lupa update data login!!!!!!!!!!!!
   final passController = TextEditingController();
+  final namaCont = TextEditingController();
   Future<File> file;
   String status = '';
   String base64Image;
@@ -68,7 +69,8 @@ class _ProfilState extends State<Profil> {
       status = message;
     });
   }
-startUpload() {
+
+  startUpload() {
     setStatus('Uploading Image...');
     if (null == tmpFile) {
       setStatus(errMessage);
@@ -92,6 +94,19 @@ startUpload() {
     var response = await http.post(url, body: {
       "image": base64Image,
       "name": fileName,
+      "id": data_login[2],
+    }).then((result) {
+      setStatus(result.statusCode == 200 ? result.body : errMessage);
+    }).catchError((error) {
+      setStatus(error);
+    });
+    getProfil();
+  }
+
+  editNama() async {
+    var url = 'http://infinacreativa.com/neonton/index.php?Apii/editNama';
+    var response = await http.post(url, body: {
+      "nama": namaCont.text,
       "id": data_login[2],
     }).then((result) {
       setStatus(result.statusCode == 200 ? result.body : errMessage);
@@ -209,42 +224,48 @@ startUpload() {
                   Radius.circular(5.0),
                 ),
               ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(
-                      color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        hintText: dataProfil.length == 0
+                            ? ""
+                            : dataProfil[0]["name"].toString(),
+                        hintStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      maxLines: 1,
+                      controller: passController,
                     ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  hintText: dataProfil.length == 0
-                      ? ""
-                      : dataProfil[0]["name"].toString(),
-                  suffixIcon: new IconButton(
+                  new IconButton(
                     icon: new Icon(
                       Icons.save,
                       color: Colors.lightBlue,
                     ),
                     onPressed: () => {},
                   ),
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                ),
-                maxLines: 1,
-                controller: passController,
+                ],
               ),
             ),
           ),
@@ -258,42 +279,48 @@ startUpload() {
                   Radius.circular(5.0),
                 ),
               ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(
-                      color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        hintText: dataProfil.length == 0
+                            ? ""
+                            : dataProfil[0]["email"].toString(),
+                        hintStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      maxLines: 1,
+                      controller: passController,
                     ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
-                    ),
-                    borderRadius: BorderRadius.circular(5.0),
-                  ),
-                  hintText: dataProfil.length == 0
-                      ? ""
-                      : dataProfil[0]["email"].toString(),
-                  suffixIcon: new IconButton(
+                  new IconButton(
                     icon: new Icon(
                       Icons.save,
                       color: Colors.lightBlue,
                     ),
                     onPressed: () => {},
                   ),
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                ),
-                maxLines: 1,
-                controller: passController,
+                ],
               ),
             ),
           ),
@@ -349,7 +376,7 @@ startUpload() {
             ),
           ),
           SizedBox(height: 10.0),
-          // Text(status),
+          Text(status),
           showImage(),
           // Text(dataProfil[0]['foto'].toString())
         ],

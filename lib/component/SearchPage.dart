@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/component/Draw.dart';
 import 'package:http/http.dart' as http;
+import 'package:neonton/component/ItemSearch.dart';
 import 'package:neonton/component/trending_item.dart';
 import 'package:neonton/pageVideo/Ecourse.dart';
 import 'dart:async';
@@ -119,7 +120,7 @@ class _SearchPageState extends State<SearchPage> {
                   ListView.builder(
                     primary: false,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    // physics: NeverScrollableScrollPhysics(),
                     itemCount: data == null ? 0 : data.length,
                     itemBuilder: (BuildContext context, int index) {
                       Map video = data[index];
@@ -136,13 +137,15 @@ class _SearchPageState extends State<SearchPage> {
                               ),
                             );
                           },
-                          child: TrendingItem(
+                          // child: Text(video["judul"].toString()),
+                          child: ItemSearch(
                             img: video["thumbnail"].toString(),
                             title: video["judul"],
                             address: video["kategori"],
                             rating: video["harga"],
                             view: video["view"],
-                          ));
+                          )
+                          );
                     },
                   ),
                   Center(child: data.length == 0 ? Text("Tidak Ditemukan") : Text("")),
