@@ -255,15 +255,15 @@ class _ProfilState extends State<Profil> {
                         ),
                       ),
                       maxLines: 1,
-                      controller: passController,
+                      controller: namaCont,
                     ),
                   ),
                   new IconButton(
                     icon: new Icon(
-                      Icons.save,
+                      Icons.satellite,
                       color: Colors.lightBlue,
                     ),
-                    onPressed: () => {},
+                    onPressed:editNama,
                   ),
                 ],
               ),

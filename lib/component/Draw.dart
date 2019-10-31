@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:neonton/Log.dart';
 import 'package:neonton/Topup.dart';
+import 'package:neonton/Voucher.dart';
 import 'package:neonton/main.dart';
 import 'package:neonton/pengaturan.dart';
 import 'package:neonton/profil.dart';
@@ -200,6 +201,24 @@ class Draw extends StatelessWidget {
             child: ListTile(
               title: Text(
                 'Topup',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF3B3A3A),
+                ),
+              ),
+              leading: Icon(
+                Icons.monetization_on,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context) => new Voucher(),
+            )),
+            child: ListTile(
+              title: Text(
+                'Kode Voucher',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF3B3A3A),

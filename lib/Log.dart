@@ -14,7 +14,7 @@ class Log extends StatefulWidget {
 class _LogState extends State<Log> {
   final passController = TextEditingController();
   final emailController = TextEditingController();
-  List data = [];
+  static List data = [];
   Future<String> getData() async {
     String url =
         'http://infinacreativa.com/neonton/index.php?Apii/getUser/informatika15/' +
