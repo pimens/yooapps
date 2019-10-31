@@ -4,7 +4,7 @@ import 'package:neonton/component/Draw.dart';
 import 'package:neonton/pageVideo/Video.dart';
 import 'package:neonton/component/SearchPage.dart';
 import 'package:neonton/tentang.dart';
-
+import 'package:splashscreen/splashscreen.dart';
 import './hal_rekomendasi.dart' as rekomendasi;
 import './hal_edukasi.dart' as edukasi;
 import './hal_entertaiment.dart' as entertaiment;
@@ -14,10 +14,39 @@ void main() {
     title: "Neonton",
     initialRoute: '/',
     routes: {
-      '/': (context) => Home(),
+      '/': (context) => MyApp(),
       '/video': (context) => Video(id: "x"),
     },
   ));
+}
+
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  Widget build(BuildContext context) {
+    return new SplashScreen(
+      seconds: 5,
+      navigateAfterSeconds: new Home(),
+      title: new Text('Neonton',
+      style: new TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20.0
+      ),),
+      // image: new Image.network('https://i.imgur.com/TyCSG9A.png'),
+      image : Image.asset("assets/logo.png"),
+      backgroundColor: Color(0xFF3B3A3A),
+      styleTextUnderTheLoader: new TextStyle(),
+      photoSize: 100.0,
+      onClick: ()=>print("Flutter Egypt"),
+      loaderColor: Colors.red,
+      
+    );
+  }
 }
 
 class Home extends StatefulWidget {

@@ -65,37 +65,53 @@ class _SearchPageState extends State<SearchPage> {
                   Radius.circular(5.0),
                 ),
               ),
-              child: TextField(
-                style: TextStyle(
-                  fontSize: 15.0,
-                  color: Colors.black,
-                ),
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(10.0),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
-                    borderSide: BorderSide(
-                      color: Colors.white,
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(
+                        fontSize: 15.0,
+                        color: Colors.black,
+                      ),
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(10.0),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5.0),
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                          borderRadius: BorderRadius.circular(5.0),
+                        ),
+                        hintText: "Keyword Searching : " + keyword,
+                        // suffixIcon: new IconButton(
+                        //   icon: new Icon(
+                        //     Icons.search,
+                        //     color: Colors.black,
+                        //   ),
+                        //   onPressed: () => getData(_searchControl.text),
+                        // ),
+                        hintStyle: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                      maxLines: 1,
+                      controller: _searchControl,
                     ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Colors.white,
+                  new IconButton(
+                    icon: new Icon(
+                      Icons.search,
+                      color: Colors.black,
                     ),
-                    borderRadius: BorderRadius.circular(5.0),
+                    onPressed: () => getData(_searchControl.text),
                   ),
-                  hintText: "Keyword Searching : " + keyword,
-                  suffixIcon: new IconButton(
-                    icon: new Icon(Icons.search,color: Colors.black,),
-                    onPressed: () =>getData(_searchControl.text),
-                  ),                  
-                  hintStyle: TextStyle(
-                    fontSize: 15.0,
-                    color: Colors.black,
-                  ),
-                ),
-                maxLines: 1,
-                controller: _searchControl,
+                ],
               ),
             ),
           ),
@@ -144,11 +160,13 @@ class _SearchPageState extends State<SearchPage> {
                             address: video["kategori"],
                             rating: video["harga"],
                             view: video["view"],
-                          )
-                          );
+                          ));
                     },
                   ),
-                  Center(child: data.length == 0 ? Text("Tidak Ditemukan") : Text("")),
+                  Center(
+                      child: data.length == 0
+                          ? Text("Tidak Ditemukan")
+                          : Text("")),
                   SizedBox(height: 10.0),
                 ],
               ),

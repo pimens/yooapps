@@ -31,6 +31,7 @@ dependencies:
   giffy_dialog: ^1.3.0
   url_launcher: ^5.1.6
   expandable: ^3.0.1
+  splashscreen:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

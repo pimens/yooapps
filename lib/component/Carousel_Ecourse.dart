@@ -6,7 +6,7 @@ import 'dart:convert';
 import 'dart:core';
 import 'package:neonton/pageVideo/Ecourse.dart';
 import 'package:neonton/util/const.dart';
-
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 class Carousel_Ecourse extends StatefulWidget {
   final String url;
   Carousel_Ecourse({this.url});
@@ -64,7 +64,11 @@ class _Carousel_EcourseState extends State<Carousel_Ecourse> {
                         return Builder(
                           builder: (BuildContext context) {
                             h = 200;
-                            return new CircularProgressIndicator();
+                            // return new CircularProgressIndicator();
+                            return SpinKitRotatingCircle(
+                              color: Colors.white,
+                              size: 50.0,
+                            );
                           },
                         );
                       }).toList()
