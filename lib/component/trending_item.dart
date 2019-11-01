@@ -47,10 +47,10 @@ class _TrendingItemState extends State<TrendingItem> {
       padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
       child: Container(
         // height: MediaQuery.of(context).size.height / 1.0,
-        width: MediaQuery.of(context).size.width / 1.5,
+        width: MediaQuery.of(context).size.width / 3.0,
         child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          // shape:
+          //     RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           elevation: 3.0,
           child: Column(
             children: <Widget>[
@@ -151,24 +151,20 @@ class _TrendingItemState extends State<TrendingItem> {
                   ),
                 ],
               ),
-              SizedBox(height: 7.0),
+              // SizedBox(height: 7.0),
               Expanded(
                 child: ListView(
                   children: <Widget>[
                     Padding(
-                      padding: EdgeInsets.only(left: 15.0),
+                      padding: EdgeInsets.only(left: 5.0),
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         child: Row(
                           children: <Widget>[
-                            Icon(
-                              Icons.add_box,
-                              color: Constants.darkPrimary,
-                              size: 16,
-                            ),
+                            
                             Expanded(
                               child: new Container(
-                                  padding: EdgeInsets.only(left: 7.0),
+                                  padding: EdgeInsets.only(left: 1.0),
                                   width: MediaQuery.of(context).size.width,
                                   // child: Text(
                                   //   " ${widget.title} ",
@@ -187,7 +183,7 @@ class _TrendingItemState extends State<TrendingItem> {
                   ],
                 ),
               ),
-              SizedBox(height: 10.0),
+              // SizedBox(height: 10.0),
             ],
           ),
         ),

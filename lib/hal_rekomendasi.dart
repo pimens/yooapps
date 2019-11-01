@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-// import 'package:neonton/component/Carousel.dart';
 import 'package:neonton/component/Carousel_Ecourse.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
@@ -30,8 +29,10 @@ class _RekomendasiState extends State<Rekomendasi> {
     }
     return 'success!';
   }
-   Future<String> getBimbel() async {
-    String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/bimbel";
+
+  Future<String> getBimbel() async {
+    String url =
+        "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/bimbel";
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -54,25 +55,11 @@ class _RekomendasiState extends State<Rekomendasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(220, 221, 225,100),
       body: new Container(
           child: new Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              margin: EdgeInsets.only(top: 5, left: 10),
-              child: Text(
-                "Most Viewed",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Carousel_Ecourse(
-              url:
-                  "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
-          // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo/"),
-          Divider(),
           Expanded(
             child: Padding(
               padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
@@ -80,6 +67,22 @@ class _RekomendasiState extends State<Rekomendasi> {
               child: ListView(
                 // scrollDirection: Axis.horizontal,
                 children: <Widget>[
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5, left: 10),
+                      child: Text(
+                        "Most Viewed",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  Carousel_Ecourse(
+                      url:
+                          "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
+                  // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo/"),
+                  Divider(),
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(

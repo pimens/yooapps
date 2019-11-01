@@ -3,53 +3,33 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:neonton/main.dart';
 
-class Log extends StatefulWidget {
+import 'package:neonton/Log.dart';
+
+class SignUp extends StatefulWidget {
   @override
-  _LogState createState() => _LogState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LogState extends State<Log> {
+class _SignUpState extends State<SignUp> {
   final passController = TextEditingController();
+  final namaCOnt = TextEditingController();
   final emailController = TextEditingController();
-  String msg = "";
-  String id;
-  static List data = [];
-  login() async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/login';
+
+  insert() async {
+    var url = 'http://infinacreativa.com/neonton/index.php?Apii/signup';
     var response = await http.post(url, body: {
+      "nama": namaCOnt.text,
       "email": emailController.text,
       "password": passController.text,
-    }).then((result) async {
-         var content = json.decode(result.body);
-        data = content;
-      if (data.length>0) {     
-        getData();
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Home()),
-            (Route<dynamic> route) => false);
-      } else {
-        msg = "Email/password Salah";
-      }
+    }).then((result) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => Log(),
+        ),
+      );
     }).catchError((error) {});
-  }
-
-  Future<String> getData() async {    
- 
-         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setStringList('login', [
-          data[0]['name'].toString(),
-          data[0]['foto'].toString(),
-          data[0]['user_id'].toString(),
-          data[0]['saldo'].toString(),
-          // data[0]['foto'].toString(),
-        ]);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Home()),
-            (Route<dynamic> route) => false);     
-    return 'success!';
   }
 
   @override
@@ -70,6 +50,20 @@ class _LogState extends State<Log> {
             ),
             TextField(
               // autofocus: true,
+              controller: namaCOnt,
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(
+                labelText: "Nama Lengkap",
+                labelStyle: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w400,
+                  fontSize: 20,
+                ),
+              ),
+              style: TextStyle(fontSize: 20),
+            ),
+            TextField(
+              // autofocus: true,
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
@@ -85,7 +79,6 @@ class _LogState extends State<Log> {
             SizedBox(
               height: 10,
             ),
-            Text(msg),
             TextField(
               // autofocus: true,
               controller: passController,
@@ -165,7 +158,7 @@ class _LogState extends State<Log> {
                     ],
                   ),
                   onPressed: () {
-                    login();
+                    insert();
                   },
                 ),
               ),

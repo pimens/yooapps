@@ -92,6 +92,7 @@ class _VoucherState extends State<Voucher> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(245, 246, 250,100),
       appBar: new AppBar(
         backgroundColor: Color(0xFF3B3A3A),
         title: new Center(
@@ -100,9 +101,11 @@ class _VoucherState extends State<Voucher> {
         actions: <Widget>[new Icon(Icons.search)],
       ),
       drawer: Draw(),
-      body: Center(
-        child: Container(
+      body: Align(
+         alignment: Alignment.bottomCenter,
+        child: Container(          
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               TextField(
                 style: TextStyle(
@@ -114,12 +117,12 @@ class _VoucherState extends State<Voucher> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                     borderSide: BorderSide(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                   ),
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     borderRadius: BorderRadius.circular(5.0),
                   ),

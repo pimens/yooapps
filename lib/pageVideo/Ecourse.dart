@@ -262,6 +262,7 @@ class _EcourseState extends State<Ecourse> {
                                 : Text(
                                     data[0]['judul'].toString(),
                                     style: TextStyle(
+                                      fontFamily: "poppin",
                                       fontSize: 20,                                      
                                     ),
                                   ),

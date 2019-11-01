@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neonton/Log.dart';
 import 'package:neonton/Topup.dart';
 import 'package:neonton/Voucher.dart';
+import 'package:neonton/component/SignUp.dart';
 import 'package:neonton/main.dart';
 import 'package:neonton/pengaturan.dart';
 import 'package:neonton/profil.dart';
@@ -94,6 +95,25 @@ class Draw extends StatelessWidget {
             ),
           ),
           Divider(),
+           InkWell(
+            onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+              builder: (BuildContext context) => new SignUp(),
+            )),
+            child: ListTile(
+              title: Text(
+                'SignUp',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF3B3A3A),
+                ),
+              ),
+              leading: Icon(
+                Icons.input,
+                color: Colors.redAccent,
+              ),
+            ),
+          ),
+          Divider(),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Tentang(),
@@ -141,9 +161,9 @@ class Draw extends StatelessWidget {
                 width: 90.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image: NetworkImage("http://infinacreativa.com/neonton/" +
-                          data_login[1].toString())),
+                  // image: DecorationImage(
+                  //     image: NetworkImage("http://infinacreativa.com/neonton/" +
+                  //         data_login[1].toString())),
                   border: Border.all(
                     color: Colors.white,
                     width: 5.0,
