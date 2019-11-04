@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:neonton/component/SignUp.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
@@ -23,9 +24,9 @@ class _LogState extends State<Log> {
       "email": emailController.text,
       "password": passController.text,
     }).then((result) async {
-         var content = json.decode(result.body);
-        data = content;
-      if (data.length>0) {     
+      var content = json.decode(result.body);
+      data = content;
+      if (data.length > 0) {
         getData();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => Home()),
@@ -36,19 +37,18 @@ class _LogState extends State<Log> {
     }).catchError((error) {});
   }
 
-  Future<String> getData() async {    
- 
-         SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setStringList('login', [
-          data[0]['name'].toString(),
-          data[0]['foto'].toString(),
-          data[0]['user_id'].toString(),
-          data[0]['saldo'].toString(),
-          // data[0]['foto'].toString(),
-        ]);
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Home()),
-            (Route<dynamic> route) => false);     
+  Future<String> getData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setStringList('login', [
+      data[0]['name'].toString(),
+      data[0]['foto'].toString(),
+      data[0]['user_id'].toString(),
+      data[0]['saldo'].toString(),
+      // data[0]['foto'].toString(),
+    ]);
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()),
+        (Route<dynamic> route) => false);
     return 'success!';
   }
 
@@ -65,63 +65,100 @@ class _LogState extends State<Log> {
               height: 128,
               child: Image.asset("assets/logo.png"),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            TextField(
-              // autofocus: true,
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                labelText: "E-mail",
-                labelStyle: TextStyle(
+            Center(
+              child: Text(
+                "NEONTON",
+                softWrap: true,
+                style: TextStyle(
+                  fontSize: 35,
                   color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
                 ),
               ),
-              style: TextStyle(fontSize: 20),
             ),
             SizedBox(
-              height: 10,
+              height: 30,
             ),
-            Text(msg),
-            TextField(
-              // autofocus: true,
-              controller: passController,
-              keyboardType: TextInputType.text,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: "Kata Sandi",
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-              style: TextStyle(fontSize: 20),
-            ),
-            Container(
-              height: 40,
-              alignment: Alignment.centerRight,
-              child: FlatButton(
-                child: Text(
-                  emailController.text,
-                  style: TextStyle(
-                    color: Colors.white,
+            Theme(
+              data: Theme.of(context).copyWith(primaryColor: Colors.red),
+              child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                autofocus: false,
+                style: new TextStyle(color: Colors.white),
+                // initialValue: 'alucard@gmail.com',
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.email),
+                  hintText: 'Email',
+                  focusColor: Colors.red,
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
                   ),
-                  textAlign: TextAlign.right,
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                  // border: OutlineInputBorder(
+                  //   borderSide: const BorderSide(color: Colors.grey, width: 1.0),
+                  //     borderRadius: BorderRadius.circular(32.0)),
                 ),
-                onPressed: () {
-                  // Navigator.push(
-                  //   context,
-                  // MaterialPageRoute(
-                  //   builder: (context) => ResetPasswordPage(),
-                  // ),
-                  // );
-                },
               ),
             ),
+
+            // TextField(
+            //   // autofocus: true,
+            //   controller: emailController,
+            //   keyboardType: TextInputType.emailAddress,
+            //   decoration: InputDecoration(
+            //     labelText: "E-mail",
+            //     labelStyle: TextStyle(
+            //       color: Colors.white,
+            //       fontWeight: FontWeight.w400,
+            //       fontSize: 20,
+            //     ),
+            //   ),
+            //   style: TextStyle(fontSize: 20),
+            // ),
+            Text(msg),
+            Theme(
+              data: Theme.of(context).copyWith(primaryColor: Colors.red),
+              child: TextFormField(
+                autofocus: false,
+                style: new TextStyle(color: Colors.white),
+                // initialValue: 'some password',
+                obscureText: true,
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.vpn_key),
+                  hintText: 'Password',
+                  contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
+                  focusColor: Colors.red,
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(24),
+                    borderSide: BorderSide(color: Colors.red, width: 1.0),
+                  ),
+                ),
+              ),
+            ),
+
+            // TextField(
+            //   // autofocus: true,
+            //   controller: passController,
+            //   keyboardType: TextInputType.text,
+            //   obscureText: true,
+            //   decoration: InputDecoration(
+            //     labelText: "Kata Sandi",
+            //     labelStyle: TextStyle(
+            //       color: Colors.white,
+            //       fontWeight: FontWeight.w400,
+            //       fontSize: 20,
+            //     ),
+            //   ),
+            //   style: TextStyle(fontSize: 20),
+            // ),
             SizedBox(
               height: 40,
             ),
@@ -171,7 +208,41 @@ class _LogState extends State<Log> {
               ),
             ),
             SizedBox(
-              height: 90,
+              height: 20,
+            ),
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Text(
+                      "Don't have an account? ",
+                      softWrap: true,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: Colors.white,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUp()),
+                        );
+                      },
+                      child: Text(
+                        "Sign up",
+                        softWrap: true,
+                        style: TextStyle(
+                          fontSize: 13,
+                          color: Colors.red,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),

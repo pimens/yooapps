@@ -119,8 +119,8 @@ class _EdukasiState extends State<Edukasi> {
                               child: TrendingItem(
                                 img: video["thumbnail"].toString(),
                                 title: video["judul"],
-                                address: video["kategori"],
-                                rating: video["harga"],
+                                kategori: video["kategori"],
+                                harga: video["harga"],
                                 view: video["view"],
                               ));
                         },
@@ -164,8 +164,8 @@ class _EdukasiState extends State<Edukasi> {
                               child: TrendingItem(
                                 img: video["thumbnail"].toString(),
                                 title: video["judul"],
-                                address: video["kategori"],
-                                rating: video["harga"],
+                                kategori: video["kategori"],
+                                harga: video["harga"],
                                 view: video["view"],
                               ));
                         },

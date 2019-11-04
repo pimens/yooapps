@@ -72,8 +72,8 @@ class _EntertaimentState extends State<Entertaiment> {
                           child: TrendingItem(
                             img: video["thumbnail"].toString(),
                             title: video["judul"],
-                            address: video["kategori"],
-                            rating: video["harga"],
+                            kategori: video["kategori"],
+                            harga: video["harga"],
                             view: video["view"],
                           ));
                     },

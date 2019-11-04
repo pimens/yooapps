@@ -7,6 +7,7 @@ import 'dart:core';
 import 'package:neonton/pageVideo/Ecourse.dart';
 import 'package:neonton/util/const.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+
 class Carousel_Ecourse extends StatefulWidget {
   final String url;
   Carousel_Ecourse({this.url});
@@ -107,66 +108,106 @@ class _Carousel_EcourseState extends State<Carousel_Ecourse> {
                                       ),
                                     ),
                                     Positioned(
-                                      top: 6.0,
-                                      right: 6.0,
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4.0)),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(2.0),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.monetization_on,
-                                                color: Constants.darkPrimary,
-                                                size: 10,
-                                              ),
-                                              Text(
-                                                d['harga'],
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ],
+                                      top: 5.0,
+                                      left: 5.0,
+                                      child: Container(
+                                        decoration: new BoxDecoration(
+                                          shape: BoxShape.rectangle,
+                                          // color: Colors.red,
+                                          borderRadius: new BorderRadius.all(
+                                              new Radius.circular(32.0)),
+                                        ),
+                                        child: Text(
+                                          "Most Viewed",
+                                          softWrap: true,
+                                          style: TextStyle(
+                                            fontSize: 20,
+                                            color: Colors.white,
                                           ),
                                         ),
                                       ),
                                     ),
                                     Positioned(
-                                      top: 26.0,
-                                      right: 6.0,
-                                      child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(3.0)),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(4.0),
-                                          child: Row(
-                                            children: <Widget>[
-                                              Icon(
-                                                Icons.remove_red_eye,
-                                                color: Constants.darkPrimary,
-                                                size: 10,
-                                              ),
-                                              Text(
-                                                d['view'],
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.bold,
+                                      bottom: 25.0,
+                                      right: 3.0,
+                                      child: Container(
+                                        decoration: new BoxDecoration(
+                                          shape: BoxShape.rectangle,
+                                          color: Colors.red,
+                                          borderRadius: new BorderRadius.all(
+                                              new Radius.circular(32.0)),
+                                        ),
+                                        child: Card(
+                                          elevation: 0,
+                                          color: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0)),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(1.0),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.monetization_on,
+                                                  color: Colors.white,
+                                                  size: 10,
                                                 ),
-                                              ),
-                                            ],
+                                                Text(
+                                                  d['harga'].toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Positioned(
+                                      bottom: 1.0,
+                                      right: 3.0,
+                                      child: Container(
+                                        decoration: new BoxDecoration(
+                                          shape: BoxShape.rectangle,
+                                          color: Colors.red,
+                                          borderRadius: new BorderRadius.all(
+                                              new Radius.circular(32.0)),
+                                        ),
+                                        child: Card(
+                                          elevation: 0,
+                                          color: Colors.transparent,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(3.0)),
+                                          child: Padding(
+                                            padding: EdgeInsets.all(1.0),
+                                            child: Row(
+                                              children: <Widget>[
+                                                Icon(
+                                                  Icons.remove_red_eye,
+                                                  color: Colors.white,
+                                                  size: 10,
+                                                ),
+                                                Text(
+                                                  d['view'].toString(),
+                                                  style: TextStyle(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                     Positioned(
                                       top: 6.0,
-                                      left: 6.0,
+                                      right: 6.0,
                                       child: Card(
                                         shape: RoundedRectangleBorder(
                                             borderRadius:

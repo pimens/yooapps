@@ -10,7 +10,8 @@ import './hal_edukasi.dart' as edukasi;
 import './hal_entertaiment.dart' as entertaiment;
 
 void main() {
-  runApp(new MaterialApp(
+  runApp(new MaterialApp(   
+     
     title: "Neonton",
     initialRoute: '/',
     routes: {

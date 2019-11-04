@@ -55,29 +55,29 @@ class _RekomendasiState extends State<Rekomendasi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(220, 221, 225,100),
+      backgroundColor: Color.fromRGBO(220, 221, 225, 100),
       body: new Container(
           child: new Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Expanded(
             child: Padding(
-              padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+              padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
               //listview Scroll atas bawah
               child: ListView(
                 // scrollDirection: Axis.horizontal,
                 children: <Widget>[
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Container(
-                      margin: EdgeInsets.only(top: 5, left: 10),
-                      child: Text(
-                        "Most Viewed",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.centerLeft,
+                  //   child: Container(
+                  //     margin: EdgeInsets.only(top: 5, left: 10),
+                  //     child: Text(
+                  //       "Most Viewed",
+                  //       style: TextStyle(
+                  //           fontSize: 20, fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // ),
                   Carousel_Ecourse(
                       url:
                           "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
@@ -87,10 +87,19 @@ class _RekomendasiState extends State<Rekomendasi> {
                     alignment: Alignment.centerLeft,
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
-                      child: Text(
-                        "General",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "General",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          new Container(
+                            height: 2.5,
+                            width: 40,
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -120,22 +129,31 @@ class _RekomendasiState extends State<Rekomendasi> {
                               child: TrendingItem(
                                 img: video["thumbnail"].toString(),
                                 title: video["judul"],
-                                address: video["kategori"],
-                                rating: video["harga"],
+                                kategori: video["kategori"],
+                                harga: video["harga"],
                                 view: video["view"],
                               ));
                         },
                       )),
                   Divider(),
                   //Ecoures
-                  Align(
+                 Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
-                      child: Text(
-                        "Bimbel",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            "Bimbel",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          new Container(
+                            height: 2.5,
+                            width: 40,
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -165,8 +183,8 @@ class _RekomendasiState extends State<Rekomendasi> {
                               child: TrendingItem(
                                 img: video["thumbnail"].toString(),
                                 title: video["judul"],
-                                address: video["kategori"],
-                                rating: video["harga"],
+                                kategori: video["kategori"],
+                                harga: video["harga"],
                                 view: video["view"],
                               ));
                         },
