@@ -81,6 +81,7 @@ class _LogState extends State<Log> {
             Theme(
               data: Theme.of(context).copyWith(primaryColor: Colors.red),
               child: TextFormField(
+                controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 autofocus: false,
                 style: new TextStyle(color: Colors.white),
@@ -124,6 +125,7 @@ class _LogState extends State<Log> {
               data: Theme.of(context).copyWith(primaryColor: Colors.red),
               child: TextFormField(
                 autofocus: false,
+                controller: passController,
                 style: new TextStyle(color: Colors.white),
                 // initialValue: 'some password',
                 obscureText: true,

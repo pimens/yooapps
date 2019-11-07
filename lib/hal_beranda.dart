@@ -8,12 +8,12 @@ import 'dart:convert';
 
 import 'package:neonton/pageVideo/Ecourse.dart';
 
-class Entertaiment extends StatefulWidget {
+class beranda extends StatefulWidget {
   @override
-  _EntertaimentState createState() => _EntertaimentState();
+  _berandaState createState() => _berandaState();
 }
 
-class _EntertaimentState extends State<Entertaiment> {
+class _berandaState extends State<beranda> {
   List data = [];
   List bimbel = [];
 

@@ -6,12 +6,29 @@ import 'package:neonton/component/SearchPage.dart';
 import 'package:neonton/tentang.dart';
 import 'package:splashscreen/splashscreen.dart';
 import './hal_rekomendasi.dart' as rekomendasi;
+import './hal_beranda.dart' as beranda;
 import './hal_edukasi.dart' as edukasi;
 import './hal_entertaiment.dart' as entertaiment;
 
 void main() {
-  runApp(new MaterialApp(   
-     
+  runApp(new MaterialApp(
+    theme: ThemeData(
+      // Define the default brightness and colors.
+      // brightness: Brightness.dark,
+      // primaryColor: Colors.red,
+      // accentColor: Colors.cyan[600],
+
+      // Define the default font family.
+      fontFamily: 'Montserrat',
+
+      // Define the default TextTheme. Use this to specify the default
+      // text styling for headlines, titles, bodies of text, and more.
+      // textTheme: TextTheme(
+      //   headline: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+      //   title: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+      //   body1: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+      // ),
+    ),
     title: "Neonton",
     initialRoute: '/',
     routes: {
@@ -20,7 +37,6 @@ void main() {
     },
   ));
 }
-
 
 class MyApp extends StatefulWidget {
   @override
@@ -33,19 +49,17 @@ class _MyAppState extends State<MyApp> {
     return new SplashScreen(
       seconds: 5,
       navigateAfterSeconds: new Home(),
-      title: new Text('Neonton',
-      style: new TextStyle(
-        fontWeight: FontWeight.bold,
-        fontSize: 20.0
-      ),),
+      title: new Text(
+        'Neonton',
+        style: new TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+      ),
       // image: new Image.network('https://i.imgur.com/TyCSG9A.png'),
-      image : Image.asset("assets/logo.png"),
+      image: Image.asset("assets/logo.png"),
       backgroundColor: Color(0xFF3B3A3A),
       styleTextUnderTheLoader: new TextStyle(),
       photoSize: 100.0,
-      onClick: ()=>print("Flutter Egypt"),
+      onClick: () => print("Flutter Egypt"),
       loaderColor: Colors.red,
-      
     );
   }
 }
@@ -65,7 +79,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    controller = new TabController(vsync: this, length: 3);
+    controller = new TabController(vsync: this, length: 4);
     scrollViewController = ScrollController();
   }
 
@@ -129,8 +143,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           title: _appBarTitle,
           actions: <Widget>[search(context)],
           bottom: new TabBar(
+            indicatorColor: Colors.red,
             controller: controller,
             tabs: <Widget>[
+              Tab(
+                text: "Home",
+              ),
               Tab(
                 text: "Rekomendasi",
               ),
@@ -148,9 +166,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
       body: new TabBarView(
         controller: controller,
         children: <Widget>[
+          new beranda.beranda(),
           new rekomendasi.Rekomendasi(),
           new edukasi.Edukasi(),
           new entertaiment.Entertaiment(),
+
         ],
       ),
     );

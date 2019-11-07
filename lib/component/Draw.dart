@@ -66,16 +66,19 @@ class Draw extends StatelessWidget {
                 "Beranda",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+                  color: Colors.red,
                 ),
               ),
               leading: Icon(
                 Icons.home,
-                color: Colors.green,
+                color: Colors.red,
               ),
             ),
           ),
-          Divider(),
+          new Container(
+            height: 0.5,
+            color: Colors.red,
+          ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Log(),
@@ -85,17 +88,20 @@ class Draw extends StatelessWidget {
                 'Login',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+                  color: Colors.red,
                 ),
               ),
               leading: Icon(
-                Icons.input,
+                Icons.vpn_key,
                 color: Colors.redAccent,
               ),
             ),
           ),
-          Divider(),
-           InkWell(
+          new Container(
+            height: 0.5,
+            color: Colors.red,
+          ),
+          InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new SignUp(),
             )),
@@ -104,7 +110,7 @@ class Draw extends StatelessWidget {
                 'SignUp',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+                  color: Colors.red,
                 ),
               ),
               leading: Icon(
@@ -113,7 +119,10 @@ class Draw extends StatelessWidget {
               ),
             ),
           ),
-          Divider(),
+          new Container(
+            height: 0.5,
+            color: Colors.red,
+          ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Tentang(),
@@ -123,16 +132,19 @@ class Draw extends StatelessWidget {
                 'Tentang',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+                  color: Colors.red,
                 ),
               ),
               leading: Icon(
                 Icons.help,
-                color: Colors.blue,
+                color: Colors.red,
               ),
             ),
           ),
-          Divider(),
+          new Container(
+            height: 0.5,
+            color: Colors.red,
+          ),
         ],
       ),
     );
@@ -144,12 +156,24 @@ class Draw extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           UserAccountsDrawerHeader(
-            accountName: Text(data_login[0].toString()),
-            accountEmail: Row(
+            accountName: Container(
+              margin: EdgeInsets.only(top: 35.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Container(
+                      // margin: EdgeInsets.only(top: 10.0),
+                      child: Text(data_login[0].toString())),
+                  Text("Rp. " + data_login[3].toString(),
+                      style: TextStyle(fontSize: 24))
+                ],
+              ),
+            ),
+            accountEmail: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[              
+              children: <Widget>[
                 Container(
-                    alignment: Alignment.centerRight,
+                    alignment: Alignment.bottomLeft,
                     margin: EdgeInsets.only(right: 25.0),
                     child: Text("Rp. " + data_login[3].toString(),
                         style: TextStyle(fontSize: 24))),
@@ -157,13 +181,13 @@ class Draw extends StatelessWidget {
             ),
             currentAccountPicture: GestureDetector(
               child: Container(
-                height: 90.0,
+                height: 110.0,
                 width: 90.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  // image: DecorationImage(
-                  //     image: NetworkImage("http://infinacreativa.com/neonton/" +
-                  //         data_login[1].toString())),
+                  image: DecorationImage(
+                      image: NetworkImage("http://infinacreativa.com/neonton/" +
+                          data_login[1].toString())),
                   border: Border.all(
                     color: Colors.white,
                     width: 5.0,
@@ -182,108 +206,156 @@ class Draw extends StatelessWidget {
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Home(),
             )),
-            child: ListTile(
-              title: Text(
-                "Beranda",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    "Beranda",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.home,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.home,
-                color: Color(0xFF3B3A3A),
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Profil(),
             )),
-            child: ListTile(
-              title: Text(
-                'Profil',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Profil',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.person,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.person,
-                color: Color(0xFF3B3A3A),
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Topup(),
             )),
-            child: ListTile(
-              title: Text(
-                'Topup',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Topup',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.monetization_on,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.monetization_on,
-                color: Colors.black,
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Voucher(),
             )),
-            child: ListTile(
-              title: Text(
-                'Kode Voucher',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Kode Voucher',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.account_balance_wallet,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.monetization_on,
-                color: Colors.black,
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Pengaturan(),
             )),
-            child: ListTile(
-              title: Text(
-                'Pengaturan',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Pengaturan',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.settings,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.settings,
-                color: Colors.black,
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           InkWell(
             onTap: () => Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new Tentang(),
             )),
-            child: ListTile(
-              title: Text(
-                'Tentang',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF3B3A3A),
+            child: Column(
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'Tentang',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.red,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.info,
+                    color: Colors.red,
+                  ),
                 ),
-              ),
-              leading: Icon(
-                Icons.info,
-                color: Colors.black,
-              ),
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
+              ],
             ),
           ),
           Divider(),
