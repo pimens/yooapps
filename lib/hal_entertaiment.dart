@@ -90,7 +90,7 @@ class _EntertaimentState extends State<Entertaiment> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "General",
+                            "Reality Show",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
@@ -144,7 +144,7 @@ class _EntertaimentState extends State<Entertaiment> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "Bimbel",
+                            "Movie",
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),

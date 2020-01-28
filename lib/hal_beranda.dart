@@ -104,7 +104,7 @@ class _berandaState extends State<beranda> {
                     ),
                   ),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height / 3.0,
+                      height: MediaQuery.of(context).size.height / 2.7,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         primary: false,
@@ -132,6 +132,9 @@ class _berandaState extends State<beranda> {
                                 kategori: video["kategori"],
                                 harga: video["harga"],
                                 view: video["view"],
+                                id: video["id_video"],
+                                ids: video["id_video"],
+
                               ));
                         },
                       )),
@@ -158,7 +161,7 @@ class _berandaState extends State<beranda> {
                     ),
                   ),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height / 3.0,
+                      height: MediaQuery.of(context).size.height / 2.7,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         primary: false,
@@ -181,11 +184,13 @@ class _berandaState extends State<beranda> {
                                 );
                               },
                               child: TrendingItem(
-                                img: video["thumbnail"].toString(),
+                               img: video["thumbnail"].toString(),
                                 title: video["judul"],
                                 kategori: video["kategori"],
                                 harga: video["harga"],
                                 view: video["view"],
+                                id: video["id_video"],
+                                ids: video["id_video"],
                               ));
                         },
                       )),

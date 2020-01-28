@@ -87,7 +87,7 @@ class _EdukasiState extends State<Edukasi> {
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
                       child: Text(
-                        "General",
+                        "Bimbels",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -132,7 +132,7 @@ class _EdukasiState extends State<Edukasi> {
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
                       child: Text(
-                        "Bimbel",
+                        "E-Course",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),

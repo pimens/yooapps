@@ -1,28 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/util/const.dart';
 import 'package:expandable/expandable.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+import 'dart:core';
 
 class TrendingItem extends StatefulWidget {
+  String ids = "";
   final String img;
   final String title;
   final String kategori;
   final String harga;
   final String view;
+  final String id;
 
-  TrendingItem({
-    Key key,
-    @required this.img,
-    @required this.title,
-    @required this.kategori,
-    @required this.harga,
-    @required this.view,
-  }) : super(key: key);
+  TrendingItem(
+      {Key key,
+      @required this.img,
+      @required this.title,
+      @required this.kategori,
+      @required this.harga,
+      @required this.view,
+      @required this.id,
+      this.ids})
+      : super(key: key);
 
   @override
-  _TrendingItemState createState() => _TrendingItemState();
+  _TrendingItemState createState() => _TrendingItemState(ids: ids);
 }
 
 class _TrendingItemState extends State<TrendingItem> {
+  String ids, x;
+
+  _TrendingItemState({this.ids}) {
+    getRating();
+  }
+  List rtg = [];
+  Future<String> getRating() async {
+    String ur =
+        "http://infinacreativa.com/neonton/index.php?Apii/getRatingEcourse/" +
+            ids;
+    var res = await http
+        .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
+    if (this.mounted) {
+      setState(() {
+        var content = json.decode(res.body);
+        rtg = content;
+      });
+    }
+    return "ok";
+  }
+
   Widget judul(BuildContext context) {
     return ExpandablePanel(
       // header: Text("xxx"),
@@ -135,7 +163,7 @@ class _TrendingItemState extends State<TrendingItem> {
                             children: <Widget>[
                               Icon(
                                 Icons.remove_red_eye,
-                                color: Colors.white,                                
+                                color: Colors.white,
                                 size: 10,
                               ),
                               Text(
@@ -188,19 +216,60 @@ class _TrendingItemState extends State<TrendingItem> {
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                              child: new Container(
-                                  padding: EdgeInsets.only(left: 1.0),
-                                  width: MediaQuery.of(context).size.width,
-                                  // child: Text(
-                                  //   " ${widget.title} ",
-                                  //   style: TextStyle(
-                                  //     fontSize: 20,
-                                  //     color: Colors.green,
-                                  //     fontWeight: FontWeight.bold,
-                                  //   ),
-                                  // )),
-                                  child: judul(context)),
-                            )
+                              child: Column(
+                                children: <Widget>[
+                                  new Container(
+                                      padding: EdgeInsets.only(left: 1.0),
+                                      width: MediaQuery.of(context).size.width,
+                                      // child: Text(
+                                      //   " ${widget.title} ",
+                                      //   style: TextStyle(
+                                      //     fontSize: 20,
+                                      //     color: Colors.green,
+                                      //     fontWeight: FontWeight.bold,
+                                      //   ),
+                                      // )),
+                                      child: judul(context)),
+                                  new Container(
+                                    padding:
+                                        EdgeInsets.only(left: 1.0, bottom: 2.0),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Text(
+                                      " ${widget.kategori} ",
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                  new Container(
+                                    padding:
+                                        EdgeInsets.only(left: 1.0, bottom: 2.0),
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Row(
+                                      children: <Widget>[
+                                        Icon(
+                                          Icons.star,
+                                          color: Colors.yellow,
+                                          size: 10,
+                                        ),
+                                        rtg.length == 0
+                                            ? Text("rr")
+                                            : Text(
+                                                rtg[0]['rating'].toString(),
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),

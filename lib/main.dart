@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/Log.dart';
 import 'package:neonton/component/Draw.dart';
 import 'package:neonton/pageVideo/Video.dart';
 import 'package:neonton/component/SearchPage.dart';
-import 'package:neonton/tentang.dart';
 import 'package:splashscreen/splashscreen.dart';
 import './hal_rekomendasi.dart' as rekomendasi;
 import './hal_beranda.dart' as beranda;
@@ -153,7 +151,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 text: "Rekomendasi",
               ),
               Tab(
-                text: "Edukasi",
+                text: "Education",
               ),
               Tab(
                 text: "Entertaiment",

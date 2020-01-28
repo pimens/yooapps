@@ -129,14 +129,14 @@ class Draw extends StatelessWidget {
             )),
             child: ListTile(
               title: Text(
-                'Tentang',
+                'About',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.red,
                 ),
               ),
               leading: Icon(
-                Icons.help,
+                Icons.info_outline,
                 color: Colors.red,
               ),
             ),
@@ -210,7 +210,7 @@ class Draw extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    "Beranda",
+                    "Home",
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
@@ -314,7 +314,7 @@ class Draw extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    'Pengaturan',
+                    'Settings',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
@@ -340,7 +340,7 @@ class Draw extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                   title: Text(
-                    'Tentang',
+                    'About',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.red,
@@ -366,24 +366,48 @@ class Draw extends StatelessWidget {
                 ListTile(
                   title: Text(
                     'Logout',
-                    textAlign: TextAlign.left,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFF3B3A3A),
+                      color: Colors.red,
                     ),
                   ),
-                  trailing: new Icon(
+                  leading: Icon(
                     Icons.power_settings_new,
                     color: Colors.red,
                   ),
-                  onTap: () => logout(context),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).padding.bottom,
-                )
+                new Container(
+                  height: 0.5,
+                  color: Colors.red,
+                ),
               ],
             ),
           ),
+          // InkWell(
+           
+          //   child: Column(
+          //     children: <Widget>[
+          //       ListTile(
+          //         title: Text(
+          //           'Logout',
+          //           textAlign: TextAlign.left,
+          //           style: TextStyle(
+          //             fontWeight: FontWeight.bold,
+          //             color: Color(0xFF3B3A3A),
+          //           ),
+          //         ),
+          //         trailing: new Icon(
+          //           Icons.power_settings_new,
+          //           color: Colors.red,
+          //         ),
+          //         onTap: () => logout(context),
+          //       ),
+          //       SizedBox(
+          //         height: MediaQuery.of(context).padding.bottom,
+          //       )
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
