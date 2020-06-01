@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:boiler_bloc/component/Draw.dart';
+import 'package:neonton_apps/component/Draw.dart';
 import 'package:http/http.dart' as http;
-import 'package:boiler_bloc/component/ItemSearch.dart';
-import 'package:boiler_bloc/component/trending_item.dart';
-import 'package:boiler_bloc/pageVideo/Ecourse.dart';
+import 'package:neonton_apps/component/ItemSearch.dart';
+import 'package:neonton_apps/component/trending_item.dart';
+import 'package:neonton_apps/pageVideo/Ecourse.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';

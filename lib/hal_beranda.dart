@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:boiler_bloc/component/Carousel_Ecourse.dart';
+import 'package:neonton_apps/component/Carousel_Ecourse.dart';
 
 import 'dart:core';
 import 'package:http/http.dart' as http;
-import 'package:boiler_bloc/component/trending_item.dart';
+import 'package:neonton_apps/component/trending_item.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:boiler_bloc/pageVideo/Ecourse.dart';
+import 'package:neonton_apps/pageVideo/Ecourse.dart';
 
 class beranda extends StatefulWidget {
   @override

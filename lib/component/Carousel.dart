@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:boiler_bloc/pageVideo/Video.dart';
+import 'package:neonton_apps/pageVideo/Video.dart';
 
 class Carousel extends StatefulWidget {
   final String url;

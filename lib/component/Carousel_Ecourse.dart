@@ -1,12 +1,12 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:boiler_bloc/pageVideo/Video.dart';
+import 'package:neonton_apps/pageVideo/Video.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
-// import 'package:boiler_bloc/pageVideo/Ecourse.dart';
-import 'package:boiler_bloc/util/const.dart';
+// import 'package:neonton_apps/pageVideo/Ecourse.dart';
+import 'package:neonton_apps/util/const.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Carousel_Ecourse extends StatefulWidget {

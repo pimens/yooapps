@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:boiler_bloc/hal_edukasi.dart';
-import 'package:boiler_bloc/hal_entertaiment.dart';
-import 'package:boiler_bloc/hal_rekomendasi.dart';
-import 'package:boiler_bloc/main.dart';
-import 'package:boiler_bloc/pengaturan.dart';
-import 'package:boiler_bloc/profil.dart';
-import 'package:boiler_bloc/tentang.dart';
+import 'package:neonton_apps/hal_edukasi.dart';
+import 'package:neonton_apps/hal_entertaiment.dart';
+import 'package:neonton_apps/hal_rekomendasi.dart';
+import 'package:neonton_apps/main.dart';
+import 'package:neonton_apps/pengaturan.dart';
+import 'package:neonton_apps/profil.dart';
+import 'package:neonton_apps/tentang.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Draw extends StatelessWidget {

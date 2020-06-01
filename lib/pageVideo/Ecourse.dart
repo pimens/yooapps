@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:boiler_bloc/Log.dart';
-import 'package:boiler_bloc/component/ChewieListItem.dart';
-import 'package:boiler_bloc/component/Draw.dart';
+import 'package:neonton_apps/Log.dart';
+import 'package:neonton_apps/component/ChewieListItem.dart';
+import 'package:neonton_apps/component/Draw.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';

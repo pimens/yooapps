@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:boiler_bloc/component/SignUp.dart';
+import 'package:neonton_apps/component/SignUp.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:boiler_bloc/main.dart';
+import 'package:neonton_apps/main.dart';
 
 class Log extends StatefulWidget {
   @override

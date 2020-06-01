@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:boiler_bloc/component/Draw.dart';
-import 'package:boiler_bloc/pageVideo/Video.dart';
-import 'package:boiler_bloc/component/SearchPage.dart';
+import 'package:neonton_apps/component/Draw.dart';
+import 'package:neonton_apps/pageVideo/Video.dart';
+import 'package:neonton_apps/component/SearchPage.dart';
 import 'package:splashscreen/splashscreen.dart';
 import './hal_rekomendasi.dart' as rekomendasi;
 import './hal_beranda.dart' as beranda;
