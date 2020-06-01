@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/component/Draw.dart';
-import 'package:neonton/pageVideo/Video.dart';
-import 'package:neonton/component/SearchPage.dart';
+import 'package:boiler_bloc/component/Draw.dart';
+import 'package:boiler_bloc/pageVideo/Video.dart';
+import 'package:boiler_bloc/component/SearchPage.dart';
 import 'package:splashscreen/splashscreen.dart';
 import './hal_rekomendasi.dart' as rekomendasi;
 import './hal_beranda.dart' as beranda;
@@ -31,7 +31,7 @@ void main() {
     initialRoute: '/',
     routes: {
       '/': (context) => MyApp(),
-      '/video': (context) => Video(id: "x"),
+      // '/video': (context) => Video(id: "x"),
     },
   ));
 }

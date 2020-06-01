@@ -3,7 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
-import 'package:neonton/component/Draw.dart';
+import 'package:boiler_bloc/component/Draw.dart';
 import 'dart:async';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,7 +49,7 @@ class TopupState extends State<Topup> {
   }
 
   upload(String fileName) async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/uploadBukti';
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/uploadBukti';
     var response = await http.post(url, body: {
       "image": base64Image,
       "name": fileName,

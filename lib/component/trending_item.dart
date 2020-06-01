@@ -38,7 +38,7 @@ class _TrendingItemState extends State<TrendingItem> {
   List rtg = [];
   Future<String> getRating() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/getRatingEcourse/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/getRatingEcourse/" +
             ids;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});

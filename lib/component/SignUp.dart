@@ -4,7 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:neonton/Log.dart';
+import 'package:boiler_bloc/Log.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -17,7 +17,8 @@ class _SignUpState extends State<SignUp> {
   final emailController = TextEditingController();
 
   insert() async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/signup';
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/signup';
+    print(namaCOnt.text);
     var response = await http.post(url, body: {
       "nama": namaCOnt.text,
       "email": emailController.text,

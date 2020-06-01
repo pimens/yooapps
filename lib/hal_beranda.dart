@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/component/Carousel_Ecourse.dart';
+import 'package:boiler_bloc/component/Carousel_Ecourse.dart';
+
 import 'dart:core';
 import 'package:http/http.dart' as http;
-import 'package:neonton/component/trending_item.dart';
+import 'package:boiler_bloc/component/trending_item.dart';
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:neonton/pageVideo/Ecourse.dart';
+import 'package:boiler_bloc/pageVideo/Ecourse.dart';
 
 class beranda extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _berandaState extends State<beranda> {
   List bimbel = [];
 
   Future<String> getData() async {
-    String url = "http://infinacreativa.com/neonton/index.php?Apii/getEcourse";
+    String url = "http://192.168.43.184/webNeon/index.php?Apii/getEcourse";
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -32,7 +33,7 @@ class _berandaState extends State<beranda> {
 
   Future<String> getBimbel() async {
     String url =
-        "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/bimbel";
+        "http://192.168.43.184/webNeon/index.php?Apii/getEcourseByKategori/bimbel";
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -80,8 +81,8 @@ class _berandaState extends State<beranda> {
                   // ),
                   Carousel_Ecourse(
                       url:
-                          "http://infinacreativa.com/neonton/index.php?Apii/getEcourseByKategori/course"),
-                  // Carousel(url: "http://infinacreativa.com/neonton/index.php?Apii/getVideo/"),
+                          "http://192.168.43.184/webNeon/index.php?Apii/getEcourseByKategori/course"),
+                  // Carousel(url: "http://192.168.43.184/webNeon/index.php?Apii/getVideo/"),
                   Divider(),
                   Align(
                     alignment: Alignment.centerLeft,

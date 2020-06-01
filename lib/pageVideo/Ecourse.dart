@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/Log.dart';
-import 'package:neonton/component/ChewieListItem.dart';
-import 'package:neonton/component/Draw.dart';
+import 'package:boiler_bloc/Log.dart';
+import 'package:boiler_bloc/component/ChewieListItem.dart';
+import 'package:boiler_bloc/component/Draw.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -34,7 +34,7 @@ class _EcourseState extends State<Ecourse> {
 
   //pembayaran
   Future<String> pembayaran() async {
-    String ur = "http://infinacreativa.com/neonton/index.php?Apii/payEcourse/" +
+    String ur = "http://192.168.43.184/webNeon/index.php?Apii/payEcourse/" +
         data_login[2] +
         "/" +
         id;
@@ -42,7 +42,7 @@ class _EcourseState extends State<Ecourse> {
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     //getSaldobaru
     String url =
-        'http://infinacreativa.com/neonton/index.php?Apii/getUserById/' +
+        'http://192.168.43.184/webNeon/index.php?Apii/getUserById/' +
             data_login[2];
     List d = [];
     res = await http
@@ -135,7 +135,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> getData() async {
     String url =
-        'http://infinacreativa.com/neonton/index.php?Apii/getEcourseById/';
+        'http://192.168.43.184/webNeon/index.php?Apii/getEcourseById/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -149,7 +149,7 @@ class _EcourseState extends State<Ecourse> {
   }
 
   Future<String> getMateri() async {
-    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getMateri/';
+    String url = 'http://192.168.43.184/webNeon/index.php?Apii/getMateri/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -164,7 +164,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> getRating() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/getRatingEcourse/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/getRatingEcourse/" +
             id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -180,7 +180,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> cekRating() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/cekRatingEcourse/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/cekRatingEcourse/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -196,7 +196,7 @@ class _EcourseState extends State<Ecourse> {
 
   Future<String> cekBayar() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/alreadyPayForEcourse/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/alreadyPayForEcourse/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -220,7 +220,7 @@ class _EcourseState extends State<Ecourse> {
 
   void insertRating(String rating) {
     var url =
-        "http://infinacreativa.com/neonton/index.php?Apii/insertRatingEcourse/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/insertRatingEcourse/" +
             data_login[2] +
             "/" +
             id +
@@ -280,7 +280,7 @@ class _EcourseState extends State<Ecourse> {
                   new Container(
                     child: new ChewieListItem(
                       videoPlayerController: VideoPlayerController.network(
-                        // http://infinacreativa.com/neonton/assets/global/video/'
+                        // http://192.168.43.184/webNeon/assets/global/video/'
                         data.length == 0
                             ? "http://"
                             : data[0]['file_video'].toString(),

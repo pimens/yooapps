@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:neonton/component/SignUp.dart';
+import 'package:boiler_bloc/component/SignUp.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:neonton/main.dart';
+import 'package:boiler_bloc/main.dart';
 
 class Log extends StatefulWidget {
   @override
@@ -19,12 +19,30 @@ class _LogState extends State<Log> {
   String id;
   static List data = [];
   login() async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/login';
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/login';
     var response = await http.post(url, body: {
       "email": emailController.text,
       "password": passController.text,
     }).then((result) async {
       var content = json.decode(result.body);
+      data = content;
+      if (data.length > 0) {
+        getData();
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => Home()),
+            (Route<dynamic> route) => false);
+      } else {
+        msg = "Email/password Salah";
+      }
+    }).catchError((error) {});
+  }
+  log() async {
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/getUser/'+emailController.text+"/"+passController.text;
+    var response = await http.post(url, body: {
+      "email": emailController.text,
+      "password": passController.text,
+    }).then((result) async {
+      var content = await json.decode(result.body);
       data = content;
       if (data.length > 0) {
         getData();
@@ -204,7 +222,7 @@ class _LogState extends State<Log> {
                     ],
                   ),
                   onPressed: () {
-                    login();
+                    log();
                   },
                 ),
               ),

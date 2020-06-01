@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/component/Draw.dart';
+import 'package:boiler_bloc/component/Draw.dart';
 import 'dart:core';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -28,7 +28,7 @@ class _VoucherState extends State<Voucher> {
 
   Future<String> getProfil() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/getUserById/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/getUserById/" +
             data_login[2];
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -50,7 +50,7 @@ class _VoucherState extends State<Voucher> {
 
   Future<String> cekV() async {
     String url =
-        "http://infinacreativa.com/neonton/index.php?Apii/cekVoucher/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/cekVoucher/" +
             data_login[2] +
             "/" +
             kodeVoucher.text;
@@ -79,7 +79,7 @@ class _VoucherState extends State<Voucher> {
 
   insertV() async {
     String url =
-        "http://infinacreativa.com/neonton/index.php?Apii/insertVoucher/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/insertVoucher/" +
             data_login[2] +
             "/" +
             kodeVoucher.text;

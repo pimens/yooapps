@@ -5,7 +5,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:neonton/pageVideo/Video.dart';
+import 'package:boiler_bloc/pageVideo/Video.dart';
 
 class Carousel extends StatefulWidget {
   final String url;
@@ -75,20 +75,20 @@ class _CarouselState extends State<Carousel> {
                             return GestureDetector(
                                 onTap: () {
                                   // Navigator.pushNamed(context, "/video");
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          Video(id: d['id_video'].toString(),harga: d['harga'],),
-                                    ),
-                                  );
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) =>
+                                  //         Video(id: d['id_video'].toString(),harga: d['harga'],),
+                                  //   ),
+                                  // );
                                 },
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   margin: EdgeInsets.symmetric(horizontal: 5.0),
                                   decoration: BoxDecoration(color: Colors.grey),
                                   child: Image.network(
-                                    // http://infinacreativa.com/neonton/assets/global/video_thumb/'+
+                                    // http://192.168.43.184/webNeon/assets/global/video_thumb/'+
                                     d['thumbnail'].toString(),
                                   ),
                                 ));

@@ -1,4 +1,4 @@
-name: neonton
+name: boiler_bloc
 description: A new Flutter project.
 
 # The following defines the version and build number for your application.
@@ -32,7 +32,6 @@ dependencies:
   url_launcher: ^5.1.6
   expandable: ^3.0.1
   splashscreen:
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2

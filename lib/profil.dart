@@ -25,7 +25,7 @@ class _ProfilState extends State<Profil> {
   List data_login = [];
   Future<String> getProfil() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/getUserById/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/getUserById/" +
             data_login[2];
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -90,7 +90,7 @@ class _ProfilState extends State<Profil> {
   // }
 
   upload(String fileName) async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/editFoto';
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/editFoto';
     var response = await http.post(url, body: {
       "image": base64Image,
       "name": fileName,
@@ -104,7 +104,7 @@ class _ProfilState extends State<Profil> {
   }
 
   editNama() async {
-    var url = 'http://infinacreativa.com/neonton/index.php?Apii/editNama';
+    var url = 'http://192.168.43.184/webNeon/index.php?Apii/editNama';
     var response = await http.post(url, body: {
       "nama": namaCont.text,
       "id": data_login[2],
@@ -180,9 +180,9 @@ class _ProfilState extends State<Profil> {
                       image: DecorationImage(
                           image: dataProfil.length == 0
                               ? NetworkImage(
-                                  "http://infinacreativa.com/neonton/assets/global/fotoUser/scaled_IMG-20191013-WA0001.jpg")
+                                  "http://192.168.43.184/webNeon/assets/global/fotoUser/scaled_IMG-20191013-WA0001.jpg")
                               : NetworkImage(
-                                  "http://infinacreativa.com/neonton/" +
+                                  "http://192.168.43.184/webNeon/" +
                                       dataProfil[0]['foto'].toString())),
                       border: Border.all(
                         color: Colors.white,

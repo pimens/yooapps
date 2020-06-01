@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/Log.dart';
-import 'package:neonton/component/ChewieListItem.dart';
-import 'package:neonton/component/Draw.dart';
+import 'package:boiler_bloc/Log.dart';
+import 'package:boiler_bloc/component/ChewieListItem.dart';
+import 'package:boiler_bloc/component/Draw.dart';
 import 'package:video_player/video_player.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -10,18 +10,22 @@ import 'dart:core';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 class Video extends StatefulWidget {
+  //  final String text;
+  // SecondScreen({Key key, @required this.text}) : super(key: key);
   String id = "";
   String harga;
-  Video({this.id, this.harga});
+  // Video({this.id, this.harga});
   @override
-  _VideoState createState() => _VideoState(id: id, harga: harga);
+  _VideoState createState() => _VideoState();
+  // _VideoState createState() => _VideoState(id: id, harga: harga);
+
 }
 
 class _VideoState extends State<Video> {
-  String id, x;
-  String harga = "";
+  String id='31', x;
+  String harga = "5600";
   int saldo = 0;
-  _VideoState({this.id, this.harga});
+  // _VideoState({this.id, this.harga});
   static String user = "0";
   static bool rate = false;
   List data = [], byr = [];
@@ -31,14 +35,14 @@ class _VideoState extends State<Video> {
 
   //pembayaran
   Future<String> pembayaran() async {
-    String ur = "http://infinacreativa.com/neonton/index.php?Apii/payVideo/" +
+    String ur = "http://192.168.43.184/webNeon/index.php?Apii/payVideo/" +
         data_login[2] +
         "/" +
         id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     //getSaldobaru
-    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getUserById/' +
+    String url = 'http://192.168.43.184/webNeon/index.php?Apii/getUserById/' +
         data_login[2];
     List d = [];
     res = await http
@@ -129,7 +133,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getData() async {
-    String url = 'http://infinacreativa.com/neonton/index.php?Apii/getVideoById/';
+    String url = 'http://192.168.43.184/webNeon/index.php?Apii/getVideoById/';
     String ur = url + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
@@ -143,7 +147,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> getRating() async {
-    String ur = "http://infinacreativa.com/neonton/index.php?Apii/getRating/" + id;
+    String ur = "http://192.168.43.184/webNeon/index.php?Apii/getRating/" + id;
     var res = await http
         .get(Uri.encodeFull(ur), headers: {'accept': 'application/json'});
     if (this.mounted) {
@@ -157,7 +161,7 @@ class _VideoState extends State<Video> {
   }
 
   Future<String> cekRating() async {
-    String ur = "http://infinacreativa.com/neonton/index.php?Apii/cekRating/" +
+    String ur = "http://192.168.43.184/webNeon/index.php?Apii/cekRating/" +
         data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -173,7 +177,7 @@ class _VideoState extends State<Video> {
 
   Future<String> cekBayar() async {
     String ur =
-        "http://infinacreativa.com/neonton/index.php?Apii/alreadyPayForVideo/" +
+        "http://192.168.43.184/webNeon/index.php?Apii/alreadyPayForVideo/" +
             data_login[2];
     ur = ur + "/" + id;
     var res = await http
@@ -195,7 +199,7 @@ class _VideoState extends State<Video> {
   }
 
   void insertRating(String rating) {
-    var url = "http://infinacreativa.com/neonton/index.php?Apii/insertRating/" +
+    var url = "http://192.168.43.184/webNeon/index.php?Apii/insertRating/" +
         data_login[2] +
         "/" +
         id +
@@ -261,7 +265,7 @@ class _VideoState extends State<Video> {
                   new Container(
                     child: new ChewieListItem(
                       videoPlayerController: VideoPlayerController.network(
-                        // http://infinacreativa.com/neonton/assets/global/video/'
+                        // http://192.168.43.184/webNeon/assets/global/video/'
                         data.length == 0
                             ? "http://"
                             : data[0]['file_video'].toString(),

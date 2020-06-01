@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:neonton/component/Draw.dart';
+import 'package:boiler_bloc/component/Draw.dart';
 import 'package:http/http.dart' as http;
-import 'package:neonton/component/ItemSearch.dart';
-import 'package:neonton/component/trending_item.dart';
-import 'package:neonton/pageVideo/Ecourse.dart';
+import 'package:boiler_bloc/component/ItemSearch.dart';
+import 'package:boiler_bloc/component/trending_item.dart';
+import 'package:boiler_bloc/pageVideo/Ecourse.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:core';
@@ -24,7 +24,7 @@ class _SearchPageState extends State<SearchPage> {
   Future<String> getData(String key) async {
     this.keyword = key;
     final String url =
-        'http://infinacreativa.com/neonton/index.php?Apii/getEcourseByTitle/' +
+        'http://192.168.43.184/webNeon/index.php?Apii/getEcourseByTitle/' +
             key;
     var res = await http
         .get(Uri.encodeFull(url), headers: {'accept': 'application/json'});
