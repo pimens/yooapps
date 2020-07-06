@@ -135,13 +135,12 @@ class _berandaState extends State<beranda> {
                                 view: video["view"],
                                 id: video["id_video"],
                                 ids: video["id_video"],
-
                               ));
                         },
                       )),
                   Divider(),
                   //Ecoures
-                 Align(
+                  Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
                       margin: EdgeInsets.only(top: 5, left: 10),
@@ -185,7 +184,7 @@ class _berandaState extends State<beranda> {
                                 );
                               },
                               child: TrendingItem(
-                               img: video["thumbnail"].toString(),
+                                img: video["thumbnail"].toString(),
                                 title: video["judul"],
                                 kategori: video["kategori"],
                                 harga: video["harga"],

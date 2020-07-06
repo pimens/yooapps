@@ -186,6 +186,7 @@ class _RekomendasiState extends State<Rekomendasi> {
                                 kategori: video["kategori"],
                                 harga: video["harga"],
                                 view: video["view"],
+                                id: "5",
                               ));
                         },
                       )),

@@ -18,7 +18,7 @@ class _LogState extends State<Log> {
   String msg = "";
   String id;
   static List data = [];
-  login() async {
+  log() async {
     var url = 'http://192.168.43.184/webNeon/index.php?Apii/login';
     var response = await http.post(url, body: {
       "email": emailController.text,
@@ -36,24 +36,24 @@ class _LogState extends State<Log> {
       }
     }).catchError((error) {});
   }
-  log() async {
-    var url = 'http://192.168.43.184/webNeon/index.php?Apii/getUser/'+emailController.text+"/"+passController.text;
-    var response = await http.post(url, body: {
-      "email": emailController.text,
-      "password": passController.text,
-    }).then((result) async {
-      var content = await json.decode(result.body);
-      data = content;
-      if (data.length > 0) {
-        getData();
-        Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => Home()),
-            (Route<dynamic> route) => false);
-      } else {
-        msg = "Email/password Salah";
-      }
-    }).catchError((error) {});
-  }
+  // log() async {
+  //   var url = 'http://192.168.43.184/webNeon/index.php?Apii/getUser/'+emailController.text+"/"+passController.text;
+  //   var response = await http.post(url, body: {
+  //     "email": emailController.text,
+  //     "password": passController.text,
+  //   }).then((result) async {
+  //     var content = await json.decode(result.body);
+  //     data = content;
+  //     if (data.length > 0) {
+  //       getData();
+  //       Navigator.of(context).pushAndRemoveUntil(
+  //           MaterialPageRoute(builder: (context) => Home()),
+  //           (Route<dynamic> route) => false);
+  //     } else {
+  //       msg = "Email/password Salah";
+  //     }
+  //   }).catchError((error) {});
+  // }
 
   Future<String> getData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
